@@ -1,0 +1,51 @@
+<view class="page">
+  <view class="page__bd">
+    <wux-cell-group title="维尔工作室2019招新报名表">
+      <wux-cell hover-class="none">
+        <wux-input clear label="📛姓名" bind:change="onNameChange" bind:clear="onClear" />
+      </wux-cell>
+      <block wx:for="{{ sex }}" wx:key="">
+        <wux-cell hover-class="none">
+          {{item.label}}
+          <wux-selectable wux-class="checkbox" checked="{{ onsex === item.value }}" controlled bind:change="onSexChange" value="{{ item.value }}" />
+        </wux-cell>
+      </block>
+      <wux-cell hover-class="none">
+        <wux-input clear label="🔢学号" value="{{ value }}" placeholder="学号（9位纯数字字符）" type="number" bind:change="onXhChange" bind:clear="onClear" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input clear label="👨‍🏫专业班级" bind:change="onSclassChange" bind:clear="onClear" placeholder="如：计科1701" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input clear label="🛏️宿舍" bind:change="onRoomChange" bind:clear="onClear" placeholder="如：贤德7-102" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input clear label="🐧QQ" bind:change="onQqChange" bind:clear="onClear" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="📧邮箱" value="{{ email }}" controlled error="{{ emailerror }}" bind:change="onEmailChange" placeholder="重要！请正确填写" bind:clear="onClear" bind:error="onEmailError" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="☎️电话" value="{{ tel }}" controlled error="{{ telerror }}" type="number" bind:change="onTelChange" placeholder="重要！请正确填写" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:error="onTelError" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <text style='margin-bottom: 20rpx;'>💯自我介绍</text>
+        <wux-textarea hasCount rows="4" cursorSpacing="80" bind:change="onContentChange" bind:clear="onClear" placeholder="写一些你对专业的了解，或做过什么专业相关的事情（比如说建站什么的）" />
+      </wux-cell>
+    </wux-cell-group>
+    <view class='tips'>
+      注意：笔试及面试时间地点待定，可加入维尔招新群
+      <text bindtap='copyText' data-text="721261412" style='color:#7acfa6;text-decoration:underline;'>721261412</text>及时了解
+    </view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <wux-button form-type="submit" type='primary' class='sub' block loading='{{isSubmit}}' disabled='{{isSubmit}}' type="balanced" bind:click='onSubmit'>提交</wux-button>
+  </view>
+  <view class="footer">
+    <view class="footer-well">
+      <image src="/images/well/well.png"></image>
+      <text>维尔工作室</text>
+    </view>
+    <text>Copyright @ {{year}} All Rights Reserved</text>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+<!--pages/user/zan/zan.wxml-->
+<view style="padding-top:100rpx;"></view>
+<image class="page" src="/images/user/zan.jpg" mode="aspectFit" show-menu-by-longpress="true" data-src='/images/user/zan.jpg' bindtap='previewImage' />
+<view class="view-text">
+  <text>点击图片后长按识别赞赏码</text>
+  <text>感谢您的支持</text>
+</view>
+<text class="zanlog" bindtap="onclick">赞赏记录</text>

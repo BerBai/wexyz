@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "公告",
+  "usingComponents": {
+    "wux-cell-group": "../../components/cell-group/index",
+    "wux-cell": "../../components/cell/index"
+  }
+}

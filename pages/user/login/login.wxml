@@ -1,0 +1,68 @@
+<!--login.wxml-->
+<view class="container">
+  <view class="remind-box" wx:if="{{remind}}">
+    <image class="remind-img" src="/images/loading.gif"></image>
+  </view>
+  <image class="title" src="/images/login/title.png"></image>
+  <view class="content">
+    <view class="hd" style="transform:rotateZ({{angle}}deg);">
+      <image class="logo" src="/images/login/logo.png"></image>
+      <image class="wave" src="/images/login/wave.png" mode="aspectFill"></image>
+      <image class="wave wave-bg" src="/images/login/wave.png" mode="aspectFill"></image>
+    </view>
+    <view class="bd">
+      <form class="login-form">
+        <view class="input-group {{userid_focus ? 'active' : ''}}">
+          <text class="input-label">帐号</text>
+          <input type="number" cursor-spacing="30" id="userid" maxlength="10" placeholder="请输入学号" bindinput="useridInput" bindfocus="inputFocus" bindblur="inputBlur" />
+        </view>
+        <view class="input-group {{passwd_focus ? 'active' : ''}}">
+          <text class="input-label">密码</text>
+          <input password="true" cursor-spacing="30" id="passwd" placeholder="请输入教务系统密码" bindinput="passwdInput" bindfocus="inputFocus" bindblur="inputBlur" />
+        </view>
+
+        <view class="user-tips">
+          <view class="user-agreement">
+            <van-checkbox value="{{ checked }}" checked-color="#07c160" bind:change="onChange" class="checked-borad" /> 我已阅读且同意
+            <text style='color:#7acfa6; text-decoration:underline;' bindtap="showAgreement">《用户协议和隐私条款》</text>
+          </view>
+
+          <view class="login-help" bindtap="showHelp">
+            <text>帮助</text>
+            <image class="login-help-img" src="/images/login/help.png"></image>
+          </view>
+        </view>
+      </form>
+      <view class="confirm-btn" bindtap="bind">
+        <text>确认绑定</text>
+      </view>
+      <view class="pwdBtn">
+        <view bindtap="onclickPwd">找回密码</view>
+        <text space="ensp"> | </text>
+        <view bindtap="onclickChangePwd">修改密码</view>
+      </view>
+    </view>
+
+    <view class="help" id="help" wx:if="{{help_status}}" bindtap="tapHelp">
+      <view class="box">
+        <view class="box-hd">
+          <text class="box-title">帮助</text>
+          <image class="box-close" src="/images/login/close.png" bindtap="hideHelp"></image>
+        </view>
+        <view class="box-bd">
+          <view class="help-q">1、帐号和密码是什么？</view>
+          <view class="help-a">
+            <text>帐号：学号</text>
+            <text>密码：教务系统密码，或初始密码</text>
+            <text>其中初始密码一般为学号</text>
+          </view>
+          <view class="help-q">2、忘记密码？</view>
+          <view class="help-a">
+            <text>请访问统一身份认证平台（http://jwgl.hutb.edu.cn/findpwd/enteraccount.jsp）进行忘记密码操作</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

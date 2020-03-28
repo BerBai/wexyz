@@ -1,0 +1,36 @@
+<view class="remind-box" wx:if="{{isLoading}}">
+  <image class="remind-img" src="/images/loading.gif"></image>
+</view>
+<view class="page" wx:else>
+  <view class="page__hd">
+    <view class="page__title">校车时间表</view>
+    <view class="page__desc" style='color:#000;'>
+      <text>学校本部——北校区的来往校车时间表\r\n星期天下午开往北院的校车是18:00</text>
+    </view>
+  </view>
+
+  <view class="button-sp-area">
+    <button id='summer' disabled="{{isAble==='summer'}}" class=" mini-btn" type="primary" size="mini" bindtap='onSwitch'>夏季</button>
+    <button id='winter' disabled="{{isAble==='winter'}}" class=" mini-btn" type="default" size="mini" bindtap='onSwitch'>冬季</button>
+  </view>
+
+  <view class="ykt-detail-wraper">
+    <view class="detail-list" wx:for="{{xcars}}" wx:key="telList">
+      <view class="detail-item">
+        <text class="detail-item-label">{{item.name}}</text>
+        <text class="detail-item-value" id='{{item.tel}}' bindtap='callPhone' bindlongpress="copyIt">{{item.time}}</text>
+      </view>
+    </view>
+    <view class="weui-cells__tips">仅供参考，具体以实际情况为准</view>
+  </view>
+  <button open-type="share" class="login-btn">
+    <text>分享校车时间给同学</text>
+  </button>
+
+  <view class="weui-footer" style='margin-top:25px;'>
+    <view class="weui-footer__links">
+      <navigator url="/pages/user/about/about" class="weui-footer__link">微信公众号：涂诣</navigator>
+    </view>
+    <view class="weui-footer__text">Copyright @ {{year}} All Rights Reserved.</view>
+  </view>
+</view>

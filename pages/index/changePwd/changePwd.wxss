@@ -1,0 +1,4 @@
+@import '/pages/index/pwd/pwd.wxss';
+.tips_new{
+  color: #ff0000;
+}

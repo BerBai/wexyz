@@ -1,0 +1,105 @@
+<view class="container">
+
+  <view class="user-info-box">
+    <block wx:if="{{is_bind}}">
+      <view class="user-info">
+        <view class="info-hd"> 
+          <image wx:if='{{hasUserInfo}}' class="user-avatar" src="{{user.avatarUrl}}"></image>
+          <image wx:else class="user-avatar" src="/images/user/default.png"></image>
+          <view class="user-title">
+            <text class="user-name">{{user.nickName}}</text>
+            <text class="user-id">{{stuInfo.data.xm}}</text>
+          </view>
+          <view class="time-box">
+            <text class="time-term">{{time.data}}</text>
+            <text class="time-now">{{nowtime}}  星期{{days[time.date]}}</text>
+          </view>
+        </view>
+        <view class="info-bd">
+          <view class="info-bd-left">
+            <!-- <text class="user-text">{{stuInfo.data.xb}}</text> -->
+            <!-- <text class="user-text">{{stuInfo.data.rxnf}}</text> -->
+            <text class="user-text">{{stuInfo.data.xh}}</text>
+            <text class="user-text">{{stuInfo.data.bj}}</text>
+          </view>
+          <view class="info-bd-right">
+            
+            <text class="user-text">{{stuInfo.data.yxmc}}</text>
+            <text class="user-text">{{stuInfo.data.zymc}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <navigator hover-class="none" url="login/login" class="user-info" wx:else>
+      <view class="info-hd">
+        <image wx:if='{{hasUserInfo}}' class="user-avatar" src="{{user.avatarUrl}}"></image>
+        <image wx:else class="user-avatar" src="/images/user/default.png"></image>
+        <view class="user-title">
+          <text class="user-name">{{user.nickName}}</text>
+          <text class="user-id">未绑定</text>
+        </view>
+        <text class="bind-btn">前往绑定</text>
+        <view class="btn-open">
+          <image class="btn-enter" src="/images/user/enter.png"></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <!-- <van-cell value="" icon="records" is-link link-type="navigateTo" url="/pages/user/information/information">
+    <view slot="title">
+      <view class="van-cell-text">完善信息</view>
+    </view>
+  </van-cell> -->
+  
+  <van-cell value="" icon="volume-o" is-link link-type="navigateTo" url="/pages/notices/notices">
+    <view slot="title">
+      <view class="van-cell-text">公告</view>
+    </view>
+  </van-cell>
+  <!-- <van-cell value="" icon="envelop-o" is-link link-type="navigateTo" url="feedback/feedback">
+    <view slot="title">
+      <view class="van-cell-text">反馈</view>
+    </view>
+  </van-cell> -->
+  <van-cell value="" icon="replay" is-link link-type="navigateTo" url="/pages/index/pwd/pwd">
+    <view slot="title">
+      <view class="van-cell-text">找回密码</view>
+    </view>
+  </van-cell>
+  <van-cell value="" icon="edit" is-link link-type="navigateTo" url="/pages/index/changePwd/changePwd">
+    <view slot="title">
+      <view  class="van-cell-text">修改密码</view>
+    </view>
+  </van-cell>
+  <van-cell value="" icon="more-o" is-link link-type="navigateTo" url="about/about">
+    <view slot="title">
+      <view class="van-cell-text">关于</view>
+    </view>
+  </van-cell>
+  <van-cell value="" icon="gift-o" is-link link-type="navigateTo" url="/pages/user/zan/zan">
+    <view slot="title">
+      <view class="van-cell-text">赞赏</view>
+    </view>
+  </van-cell>
+  <van-cell value="" icon="hot-o" is-link bindtap='copyText' data-text="555917997">
+    <view slot="title">
+      <view class="van-cell-text">加入QQ群：
+        <text style='color:#7acfa6; text-decoration:underline;'>555917997</text>
+      </view>
+    </view>
+  </van-cell>
+
+  <!-- 登录或授权按键 -->
+  <view class="user-login">
+    <van-button color="linear-gradient(to right, #be93c5 , #7bc6cc)" size="large" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" round>授权登录</van-button>
+    <view class="btu-bor"></view>
+    <navigator url="login/login">
+      <van-button color="linear-gradient(to right, #43C6AC , #F8FFAE)" size="large" url="login/login" round>
+        <text wx:if="{{is_bind}}">切换绑定</text>
+        <text wx:else>立即绑定</text>
+      </van-button>
+    </navigator>
+  </view>
+
+</view>

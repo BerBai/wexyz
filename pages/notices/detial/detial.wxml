@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-article">
+      <view class="weui-article__h1 title">{{notice.title}}</view>
+      <view class="weui-article__section">
+        <view class="weui-article__title"> </view>
+        <view class="weui-article__section">
+          <view class="weui-article__h3 date">{{notice.creat_date}}</view>
+          <text space="ensp" class="weui-article__p">{{notice.content}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-footer" style='margin-top:25px;'>
+    <view class="weui-footer__links">
+      <navigator url="/pages/user/about/about" class="weui-footer__link">微信公众号：涂诣</navigator>
+    </view>
+    <view class="weui-footer__text">Copyright @ {{year}} All Rights Reserved.</view>
+  </view>
+</view>

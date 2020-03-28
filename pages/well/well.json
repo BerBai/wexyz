@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "wux-fab-button": "../../components/fab-button/index"
+  },
+  "navigationBarTitleText": "维尔工作室",
+  "enablePullDownRefresh": false
+}

@@ -1,0 +1,32 @@
+/* pages/user/zan/zan.wxss */
+
+.page {
+  padding: 30rox;
+  align-self: center;
+
+}
+
+image {
+  padding-bottom: 40rpx;
+}
+
+.view-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+}
+
+view text {
+  font-size: 20px;
+  color: #898989;
+  padding-top: 40rpx;
+  text-align: center;
+}
+
+.zanlog{
+  color: #7ccfa7;
+  font-size: 16px;
+  padding-top: 80rpx;
+  text-align: center;
+}

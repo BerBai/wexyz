@@ -1,0 +1,5 @@
+<wux-cell-group title="" label="">
+  <block wx:for="{{notices}}" wx:key="notice">
+    <wux-cell title="{{item.title}}" is-link label="{{item.creat_date}}" url="detial/detial?id={{index}}" open-type="navigateTo" />
+  </block>
+</wux-cell-group>

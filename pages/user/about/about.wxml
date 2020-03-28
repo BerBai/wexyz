@@ -1,0 +1,112 @@
+<!--about.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="black-cover"></view>
+    <image class="logo" src="/images/login/logo.png"></image>
+    <image class="title" src="/images/login/title.png"></image>
+  </view>
+  <view class="content">
+    <view class="version">
+      <view class="version-title">
+        <text class="title-name">WeXYZ</text>
+        <text class="version-text">{{version}}</text>
+        <!-- <text class="version-text">正式版</text> -->
+      </view>
+      <view bindtap="toggleLog">
+        <text class="version-log-link update-log" wx:if="{{!showLog}}">更新日志</text>
+        <text class="version-log-link" wx:else>简介</text>
+      </view>
+    </view>
+    <view class="describe" wx:if="{{!showLog}}">
+      <text class="desc-title">简介</text>
+      <view class="desc-list">
+        <view class="desc-list-item">WeXYZ官网：
+          <text bindtap='copyText' data-text="https://xyz.125520.xyz" style='color:#7acfa6; text-decoration:underline;'>https://xyz.125520.xyz</text>
+        </view>
+        <view class="desc-list-item">湖南工商大学官网：
+          <text bindtap='copyText' data-text="http://www.hutb.edu.cn/" style='color:#7acfa6; text-decoration:underline;'>http://www.hutb.edu.cn/</text>
+        </view>
+        <view class="desc-list-item">WeXYZ官方QQ群：
+          <text bindtap='copyText' data-text="555917997" style='color:#7acfa6; text-decoration:underline;'>555917997</text>
+        </view>
+        <view class="desc-list-item">微信公众号：涂诣
+          <text bindtap='copyText' data-text="HRworker" style='color:#7acfa6; text-decoration:underline;'> ID：HRworker</text>
+        </view>
+        <view class="desc-list-item">工作微信号：
+          <text bindtap='copyText' data-text="A572375" style='color:#7acfa6; text-decoration:underline;'> A572375</text>
+        </view>
+        <view class="desc-list-item">AppID：
+          <text bindtap='copyText' data-text="wx2e5a3162ed881942" style='color:#7acfa6; text-decoration:underline;'> wx2e5a3162ed881942</text>
+        </view>
+      </view>
+      <text class="desc-content">“WeXYZ”是一款微信小程序，有别于公众号的一种全新的连接用户与服务的方式，无需下载与安装即可在微信内被便捷地获取和传播，同时具有出色的使用体验。</text>
+      <text class="desc-content">“WeXYZ”的开发离不开开源项目“We重邮”，“WeUI”，“Vant WeAPP”，“PhalApi”，在此感谢。</text>
+      <text class="desc-content">如果你希望关联“WeXYZ”小程序到你的公众号，请复制上面的AppID到公众号后台发送小程序关联邀请。</text>
+    </view>
+    <view class="log-list" wx:else>
+    <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">v1.0.0</text>
+          <text class="desc-time">2019.12.25</text>
+        </view>
+        <text class="desc-content">正式版</text>
+        <view class="desc-list">
+          <text class="desc-list-item">全新界面</text>
+          <text class="desc-list-item">增加后台功能控制模块</text>
+        </view>
+      </view>
+      <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">v0.3.0 公测</text>
+          <text class="desc-time">2019.06.07</text>
+        </view>
+        <text class="desc-content">修复BUG</text>
+        <view class="desc-list">
+          <text class="desc-list-item">一点小问题</text>
+          <text class="desc-list-item">优化交互界面</text>
+        </view>
+        <text class="desc-content">新功能</text>
+        <view class="desc-list">
+          <text class="desc-list-item">校历</text>
+          <text class="desc-list-item">作息时间安排</text>
+        </view>
+      </view>
+      <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">dev0.2.0 内测体验版</text>
+          <text class="desc-time">2019.06.01</text>
+        </view>
+        <text class="desc-content">修复BUG</text>
+        <view class="desc-list">
+          <text class="desc-list-item">修复空教室获取失败错误</text>
+          <text class="desc-list-item">优化交互体验</text>
+        </view>
+      </view>
+      <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">dev0.1.2 内测体验版</text>
+          <text class="desc-time">2019.05.30</text>
+        </view>
+        <text class="desc-content">修复BUG</text>
+        <view class="desc-list">
+          <text class="desc-list-item">修复课表等数据更新错误</text>
+        </view>
+        <text class="desc-content">新增功能</text>
+        <view class="desc-list">
+          <text class="desc-list-item">空教室查询</text>
+          <text class="desc-list-item">校车时间查询</text>
+        </view>
+      </view>
+      <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">dev0.1.0 内测体验版</text>
+          <text class="desc-time">2019.05.16</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="footer">
+    <text>微信公众号：涂诣</text>
+    <text>Copyright @ {{year}} All Rights Reserved</text>
+  </view>
+</view>

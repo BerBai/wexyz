@@ -1,0 +1,5 @@
+<view wx:for="{{loglist}}" wx:for-index="idx" wx:for-item="item">
+  <van-cell-group>
+    <van-cell title="{{item.name}}" value="{{item.money}}" label="{{item.time}}" size="large" />
+  </van-cell-group>
+</view>

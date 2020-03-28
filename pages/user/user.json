@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "van-cell": "../../components/vant/cell/index",
+    "van-cell-group": "../../components/vant/cell-group/index",
+    "van-icon": "../../components/vant/icon/index",
+    "van-button": "../../components/vant/button/index"
+  }
+}

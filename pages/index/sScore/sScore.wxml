@@ -1,0 +1,51 @@
+<wux-fab-button position="{{ types[typeIndex] }}" theme="{{ colors[colorIndex] }}" direction="{{ dirs[dirIndex] }}" reverse="{{ reverse }}" spaceBetween="{{ spaceBetween }}" sAngle="{{ sAngle }}" eAngle="{{ eAngle }}" buttons="{{ buttons }}" bind:change="onChange"
+  bind:click="onClick" bind:contact="onContact" bind:getuserinfo="onGotUserInfo" />
+
+
+<view class="container">
+  <view wx:if="{{remind}}" class="remind-box">
+    <image wx:if="{{remind == '加载中'}}" class="remind-img" src="/images/loading.gif"></image>
+    <block wx:else>
+      <image class="remind-img" src="/images/index/nothing.png"></image>
+      <text class="remind-text">{{remind}}</text>
+    </block>
+  </view>
+  <block wx:else>
+
+    <view class="cj-header">
+      <view class="cj-text">
+        <text class="cj-header-title">成绩查询</text>
+        <text class="cj-header-info">学号：{{user.xh}}</text>
+        <text class="cj-header-info">姓名：{{user.xm}}</text>
+      </view>
+      <image class="cj-bg" src="/images/index/sScore.png"></image>
+    </view>
+
+    <view class="cj-info-ctn">
+
+      <view class="cj-grade">
+        <image class="cj-grade-logo" src="/images/index/sScore.png"></image>
+        <view class="cj-grade-term">
+          <view class="cj-grade-fst">
+            <text>{{termdata.xnxqh}}学期</text>
+            <text class="grade-comment">{{time}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="cj-info-box">
+        <view class="cj-info" wx:for="{{sScores}}" wx:key="courseid">
+          <text class="cj-info-name">{{item.kcmc}}</text>
+          <text class="cj-info-socre">{{item.zcj}}</text>
+        </view>
+      </view>
+    </view>
+
+  </block>
+
+  <view class="weui-footer" style='margin-top:25px;'>
+    <view class="weui-footer__links">
+      <navigator url="/pages/user/about/about" class="weui-footer__link">微信公众号：涂诣</navigator>
+    </view>
+    <view class="weui-footer__text">Copyright @ {{year}} All Rights Reserved.</view>
+  </view>
+</view>

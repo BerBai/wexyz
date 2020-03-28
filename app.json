@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "pages/index/timetable/timetable",
+    "pages/logs/logs",
+    "pages/user/login/login",
+    "pages/index/sScore/score",
+    "pages/user/about/about",
+    "pages/user/feedback/feedback",
+    "pages/notices/notices",
+    "pages/notices/detial/detial",
+    "pages/index/tel/tel",
+    "pages/index/xcar/xcar",
+    "pages/index/freeRoom/freeRoom",
+    "pages/index/freeRoom/detial",
+    "pages/well/well",
+    "pages/well/welcome/welcome",
+    "pages/index/exam/exam",
+    "pages/index/sScore/sScore",
+    "pages/index/time/time",
+    "pages/index/calendar/calendar",
+    "pages/index/wx/wx",
+    "pages/user/agreement/agreement",
+    "pages/user/zan/zan",
+    "pages/user/zan/zanlog",
+    "pages/user/information/information",
+    "pages/index/department/department",
+    "pages/index/changePwd/changePwd",
+    "pages/index/pwd/pwd",
+    "pages/index/mibao/mibao",
+    "pages/index/cet/cet"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#7acfa6",
+    "navigationBarTitleText": "WeXYZ",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#7f848a",
+    "selectedColor": "#7acfa6",
+    "backgroundColor": "#f7f6fb",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home1.png",
+        "selectedIconPath": "images/home2.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我",
+        "iconPath": "images/user1.png",
+        "selectedIconPath": "images/user2.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
+}

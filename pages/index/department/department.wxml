@@ -1,0 +1,28 @@
+<!--pages/index/department/department.wxml-->
+<view wx:for="{{list}}" wx:for-index="idx" wx:for-item="item">
+  <van-cell is-link id="{{idx}}" bindtap="showDetail">
+    <view slot="title">
+      <view class="van-cell-text">{{item.departmentName}}</view>
+      <van-tag type="danger"></van-tag>
+    </view>
+  </van-cell>
+</view>
+<view class="help" style="top:{{high/4}}px" id="help" wx:if="{{detail_status}}" bindtap="tapDetail">
+  <view class="box">
+    <view class="box-hd">
+      <text class="box-title">{{it.departmentName}}</text>
+      <image class="box-close" src="/images/login/close.png" bindtap="hideDetail"></image>
+    </view>
+    <view class="box-bd">
+      <view class="help-a">
+        <text>{{it.introduceText}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="weui-footer" style='margin-top:25px;'>
+  <view class="weui-footer__links">
+    <navigator url="/pages/user/about/about" class="weui-footer__link">微信公众号：涂诣</navigator>
+  </view>
+  <view class="weui-footer__text">Copyright @ {{year}} All Rights Reserved.</view>
+</view>

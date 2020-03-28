@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "wux-cell-group": "../../../components/cell-group/index",
+    "wux-cell": "../../../components/cell/index",
+    "wux-textarea": "../../../components/textarea/index",
+    "wux-input": "../../../components/input/index",
+    "wux-radio-group": "../../../components/radio-group/index",
+    "wux-radio": "../../../components/radio/index",
+    "wux-selectable": "../../../components/selectable/index",
+    "wux-icon": "../../../components/icon/index",
+    "wux-button": "../../../components/button/index"
+  },
+  "navigationBarTitleText": "修改密码",
+  "enablePullDownRefresh": false
+}

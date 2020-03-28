@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "成绩查询",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "wux-fab-button": "../../../components/fab-button/index"
+  }
+}

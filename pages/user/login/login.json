@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-checkbox": "../../../components/vant/checkbox/index",
+    "van-checkbox-group": "../../../components/vant/checkbox-group/index"
+  },
+  "navigationBarTitleText": "WeXYZ",
+  "enablePullDownRefresh": false,
+  "disableScroll": true
+}

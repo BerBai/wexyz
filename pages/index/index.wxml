@@ -1,0 +1,71 @@
+<!--pages/index/index.wxml-->
+<view class="page">
+  <!--轮播图-->
+  <swiper indicator-dots='{{indicatorDots}}' vertical='{{vertical}}' autoplay='{{autoplay}}' interval='{{interval}}' duration='{{duration}}' circular='{{circular}}' previous-margin='{{previousMargin}}' next-margin='{{nextMargin}}'>
+    <block wx:for="{{imgUrls}}" wx:key="imgUrls">
+      <swiper-item>
+        <navigator hover-class="none" url='{{item.page}}?url={{item.url}}'>
+          <image src="{{item.src}}" class="slide-image" style='margin-top:-90rpx' />
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!--功能导航-->
+  <swiper class="main-swpier" indicator-dots='{{indicatorDots}}' indicator-active-color='#73b4ef' vertical='{{vertical}}' interval='{{interval}}' duration='{{duration}}' previous-margin='{{previousMargin}}' next-margin='{{nextMargin}}'>
+    <swiper-item class="main-core" wx:for="{{cores}}" wx:for-item="core" wx:key="id">
+      <block wx:for="{{core}}" wx:key="id">
+        <navigator wx:if="{{is_bind || item.id == 'pwd' || item.id == 'changePwd'}}" hover-class="none" class="main-core-item" url="{{'/pages/index/'+item.id+'/'+item.id}}">
+          <image class="core-item-icon" src="/images/index/{{item.id}}.png"></image>
+          <text class="core-item-name core-item-nameText">{{item.name}}</text>
+        </navigator>
+        <view wx:else class="main-core-item disabled" bindtap="disabled_item">
+          <image class="core-item-icon" src="/images/index/{{item.id}}.png"></image>
+          <text class="core-item-name core-item-nameText">{{item.name}}</text>
+        </view>
+      </block>
+    </swiper-item>
+  </swiper>
+  <!--公告-->
+  <view class='main-notices'>
+    <navigator hover-class="none" url='../../pages/notices/notices'>
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <image src="/images/index/notice.png" style="margin-right: 5px; vertical-align: middle; width:35px; height: 35px;"></image>
+        </view>
+        <view class="weui-cell__bd header_title">公告</view>
+      </view>
+      <block class='main-notices-item' wx:for="{{notices}}" wx:key="notice">
+        <view class='weui-cell'>
+          <view class='main-notices-text weui-cell__bd'>{{item.title}}</view>
+          <view class='main-notices-text weui-cell__ft'>{{item.date}}</view>
+        </view>
+      </block>
+      <view class='weui-cell'>
+        <view class='main-notices-text weui-cell__bd'>......</view>
+      </view>
+    </navigator>
+  </view>
+  <!--统计绑定用户-->
+  <view class="main-total">
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <image src="/images/index/total.png" style="margin-right: 5px; vertical-align: middle; width:25px; height: 25px;"></image>
+      </view>
+      <view class="weui-cell__bd header_title">累计用户绑定</view>
+    </view>
+    <view class="weui-cell">
+      <view class='main-notices-text weui-cell__bd'>当前绑定用户：</view>
+      <view class='main-notices-text weui-cell__ft'>截止时间：{{nowtime}}</view>
+    </view>
+    <view class="main-total-userTotal_view">
+      <view class="main-total-userTotal_text1">{{userTotal}}</view>
+      <view class="main-total-userTotal_text2">位</view>
+    </view>
+  </view>
+
+
+</view>
+<!-- 广告展示 -->
+<view class="adContainer">
+  <ad unit-id="xxxx" ad-intervals="30"></ad>
+</view>

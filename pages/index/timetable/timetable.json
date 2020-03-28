@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#73b4ef",
+  "navigationBarTitleText": "我的课表",
+  "backgroundColor": "#73b4ef",
+  "enablePullDownRefresh": false,
+  "navigationBarTextStyle": "white"
+}

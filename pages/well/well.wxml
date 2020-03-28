@@ -1,0 +1,85 @@
+<!--about.wxml-->
+<wux-fab-button position="{{ types[typeIndex] }}" theme="{{ colors[colorIndex] }}" direction="{{ dirs[dirIndex] }}" reverse="{{ reverse }}" spaceBetween="{{ spaceBetween }}" sAngle="{{ sAngle }}" eAngle="{{ eAngle }}" buttons="{{ buttons }}" bind:change="onChange" bind:click="onClick" bind:contact="onContact" bind:getuserinfo="onGotUserInfo" />
+
+<view class="container">
+  <view class="header">
+    <view class="black-cover"></view>
+    <image class="logo" src="/images/well/logo.png"></image>
+    <image class="title" src="/images/well/title.png"></image>
+  </view>
+  <view class="content">
+    <view class="version">
+      <view class="version-title">
+        <text class="title-name">我们期待与你相遇</text>
+      </view>
+      <view bindtap="toggleLog">
+        <text class="version-log-link update-log" wx:if="{{!showLog}}">部分成果展示</text>
+        <text class="version-log-link" wx:else>简介</text>
+      </view>
+    </view>
+    <view class="describe" wx:if="{{!showLog}}">
+      <text class="desc-title">简介</text>
+      <view class="desc-list">
+        <text class="desc-list-item">地址：岭南创客中心205</text>
+        <text class="desc-list-item" bindtap='copyText' data-text="https://github.com/well-studio" style='text-decoration:underline;'>Github：https://github.com/well-studio</text>
+      </view>
+      <text class="desc-content">维尔工作室能让你拥有一套成熟的技术培养方案，能让你不再虚度时间！</text>
+      <text class="desc-content">能让你与多人合作完成校内外软件项目，体会团队协作氛围与真正的企业项目开发环境！</text>
+      <text class="desc-content">能让你与已就业的学长学姐深刻交流，且大厂内推资源多多！</text>
+      <text class="desc-content">更令人心动的是，我们工作室已与阿里技术部达成合作，每周四与阿里技术部、国内一流大学举行学习总结与交流会，及时了解自己的水平！</text>
+      <text class="desc-content">点击右下角加号即可报名！</text>
+
+    </view>
+    <view class="log-list" wx:else>
+      <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">微服务大厅</text>
+          <text class="desc-time"></text>
+        </view>
+        <text class="desc-content">为学校宣传部及学工处所做微服务大厅项目。维尔创业工作室带给学校互联网+时代下，来自学校内部团队的技术支持。</text>
+        <view class="desc-list">
+          <image src='https://xyz.125520.xyz/images/well/1.png'></image>
+        </view>
+      </view>
+      <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">官微失物招领系统</text>
+          <text class="desc-time"></text>
+        </view>
+        <text class="desc-content">旨在提供给学生更多校园生活方面的便捷。</text>
+        <view class="desc-list">
+          <image src='https://xyz.125520.xyz/images/well/2.png'></image>
+        </view>
+      </view>
+      <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">商院图书馆留言板、抽奖系统</text>
+          <text class="desc-time"></text>
+        </view>
+        <text class="desc-content">在维尔工作室的技术支持下，校图书馆第十一届世界读书日活动获得圆满成功。</text>
+        <view class="desc-list">
+          <image src='https://xyz.125520.xyz/images/well/3.png'></image>            
+        </view>
+        
+      </view>
+      <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">合作童趣商城</text>
+          <text class="desc-time"></text>
+        </view>
+        <text class="desc-content">拓展校外业务是我们工作室准备开始攻克的新道路。</text>
+        <view class="desc-list">
+          <image src='https://xyz.125520.xyz/images/well/4.png'></image>            
+        </view>
+      </view>
+     
+    </view>
+  </view>
+  <view class="footer">
+    <view class="footer-well">
+      <image src="/images/well/well.png"></image>
+      <text>维尔工作室</text>
+    </view>
+    <text>Copyright @ {{year}} All Rights Reserved</text>
+  </view>
+</view>
