@@ -1,9 +1,9 @@
 // pages/index/score/sScore.js
 var util = require('../../../utils/util.js');
 import {
-  IndexModel
-} from '../../../models/index.js'
-let indexModel = new IndexModel()
+  HutbIndexModel
+} from '../../../models/hutbindex.js'
+let indexModel = new HutbIndexModel()
 const app = getApp()
 
 const buttons = [{
@@ -26,7 +26,7 @@ Page({
     user: [],
     termdata: [],
     time: '',
-
+ 
     types: ['topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'center'],
     typeIndex: 3,
     colors: ['light', 'stable', 'positive', 'calm', 'balanced', 'energized', 'assertive', 'royal', 'dark'],
@@ -57,18 +57,22 @@ Page({
       _this = this,
       now = new Date()
     var time = util.formatTime(new Date())
-    indexModel.getCjcx(app._token.id, app._token.token, termdata.xnxqh, (res) => {
-      if (res.success && res.result.length != 0) {
+    indexModel.getScore(app._token.token, '2018-2019-2', (res) => {
+      if (res.status && res.data.length != 0) {
         _this.setData({
           remind: '',
           user: app._user.user,
           termdata: termdata,
-          sScores: res.result,
+          sScores: res.data,
           time: time
         })
-      } else if (res.result.length === 0) {
+        var isTrue = wx.getStorageSync('terms') || []
+        if (isTrue.length === 0)
+          // 获取全部成绩
+          var isflag = app.getScores()
+      } else if (res.data.length === 0) {
         _this.setData({
-          remind: '当前学期查询无结果，可点击 加号 查看全部成绩'
+          remind: '当前学期查询无结果，可点击右下角➕查看全部成绩'
         })
       } else {
         _this.setData({

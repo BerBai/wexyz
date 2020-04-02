@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#73b4ef",
+  "navigationBarTitleText": "计算机等级查询",
+  "enablePullDownRefresh": false
+}

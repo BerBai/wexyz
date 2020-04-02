@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "wux-sticky": "../../../components/sticky/index",
+    "wux-sticky-item": "../../../components/sticky-item/index"
+  },
+  "navigationBarBackgroundColor": "#e78ab0",
+  "navigationBarTitleText": "空教室",
+  "backgroundColor": "#e78ab0"
 }

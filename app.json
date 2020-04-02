@@ -29,7 +29,12 @@
     "pages/index/changePwd/changePwd",
     "pages/index/pwd/pwd",
     "pages/index/mibao/mibao",
-    "pages/index/cet/cet"
+    "pages/index/cet/cet",
+    "pages/index/wtclass/wtclass",
+    "pages/index/ncre/ncre",
+    "pages/index/webill/webill",
+    "pages/index/webill/webind",
+    "pages/index/yicard/yicard"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -57,7 +62,7 @@
     ]
   },
   "networkTimeout": {
-    "request": 10000,
+    "request": 60000,
     "downloadFile": 10000
   },
   "debug": false,

@@ -82,8 +82,8 @@
               <!-- 有显示同节异周课 学期视图-->
               <view class="kb-card mg-12" wx:if="{{value.length>1}}">
                 <block wx:if="{{week == '*'}}">
-                  <view data-json="{{value}}" data-day="{{day}}" data-key="{{key}}" data-cid="0" data-courseName="{{value[0].course}} {{value[1].course}} {{value[2].course}} {{value[3].course}}" data-place="{{value[0].pos}} {{value[1].pos}} {{value[2].pos}} {{value[3].pos}}" data-whichJie="{{key}}" bindtap="showDetail"
-                    class="mg-8 kb-card-content green">
+                  <view data-json="{{value}}" data-day="{{day}}" data-key="{{key}}" data-cid="0" data-courseName="{{value[0].course}} {{value[1].course}} {{value[2].course}} {{value[3].course}}" data-place="{{value[0].pos}} {{value[1].pos}} {{value[2].pos}} {{value[3].pos}}"
+                    data-whichJie="{{key}}" bindtap="showDetail" class="mg-8 kb-card-content green">
                     <text class="kb-card-place-words">{{value.length}}项课程同节异周</text>
                     <view class="kb-card-name">
                       <text class="kb-card-name-text" style="-webkit-line-clamp:{{3*(cards.number-1)}};">点击展开查看</text>
@@ -188,6 +188,8 @@
         </block>
         <block wx:else>
           <text class="kb-info-week">{{toweek}}周周{{_days[today]}}</text>
+          <!-- <text class="version-text" bindtap='refreshData'>更新</text> -->
+          <text class="version-text" bindtap='eventDraw'>存图</text>
           <text class="kb-term">{{term}}</text>
         </block>
         <!--切换视图-->

@@ -3,9 +3,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLoading: true,
+    isLoading: '加载中',
     //存储存储各部门电话的数组
-    telNumber: [],
+    telNumber: [{
+      name: '联通客服',
+      tel: 10010
+    }, {
+      name: '移动客服',
+      tel: 10086
+    }, {
+      name: '团委',
+      tel: 12345678
+    }, {
+      name: '网络中心',
+      tel: 12345678
+    }],
   },
 
   /**
@@ -57,7 +69,7 @@ Page({
 
   },
   /**
-   * 点击电话号码拨出电话事件的处理函数
+   * 点击拨出电话
    */
   callPhone: function(event) {
     wx.makePhoneCall({
@@ -65,7 +77,7 @@ Page({
     })
   },
   /**
-   * 长按号码复制到粘贴板的处理函数
+   * 长按号码复制
    */
   copyIt: function(event) {
     wx.setClipboardData({
@@ -88,7 +100,7 @@ Page({
     }
     return {
       title: '湖工大各系部联系电话',
-      path: 'pages/tel/departmentTel',
+      path: 'pages/tel/tel',
     }
   }
 })

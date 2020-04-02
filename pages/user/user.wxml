@@ -77,7 +77,7 @@
       <view class="van-cell-text">关于</view>
     </view>
   </van-cell>
-  <van-cell value="" icon="gift-o" is-link link-type="navigateTo" url="/pages/user/zan/zan">
+  <!-- <van-cell value="" icon="gift-o" is-link link-type="navigateTo" url="/pages/user/zan/zan">
     <view slot="title">
       <view class="van-cell-text">赞赏</view>
     </view>
@@ -88,7 +88,7 @@
         <text style='color:#7acfa6; text-decoration:underline;'>555917997</text>
       </view>
     </view>
-  </van-cell>
+  </van-cell> -->
 
   <!-- 登录或授权按键 -->
   <view class="user-login">

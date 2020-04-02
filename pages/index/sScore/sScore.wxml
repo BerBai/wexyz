@@ -15,27 +15,35 @@
     <view class="cj-header">
       <view class="cj-text">
         <text class="cj-header-title">成绩查询</text>
-        <text class="cj-header-info">学号：{{user.xh}}</text>
-        <text class="cj-header-info">姓名：{{user.xm}}</text>
+        <text class="cj-header-info">{{user.data.xh}}</text>
+        <text class="cj-header-info">姓名：{{user.data.xm}}</text>
       </view>
       <image class="cj-bg" src="/images/index/sScore.png"></image>
     </view>
 
     <view class="cj-info-ctn">
-
       <view class="cj-grade">
         <image class="cj-grade-logo" src="/images/index/sScore.png"></image>
         <view class="cj-grade-term">
           <view class="cj-grade-fst">
-            <text>{{termdata.xnxqh}}学期</text>
+            <text>{{termdata.data}}</text>
             <text class="grade-comment">{{time}}</text>
           </view>
         </view>
       </view>
       <view class="cj-info-box">
-        <view class="cj-info" wx:for="{{sScores}}" wx:key="courseid">
-          <text class="cj-info-name">{{item.kcmc}}</text>
-          <text class="cj-info-socre">{{item.zcj}}</text>
+        <block wx:for="{{sScores}}" wx:key="courseid">
+          <view class="cj-info" wx:if="{{item.id}}">
+            <text class="cj-info-name">{{item.course}}</text>
+            <text class="cj-info-socre">{{item.mark}}</text>
+          </view>
+        </block>
+        <view class="cj-info">
+          <text class="cj-info-name" style="color:#080808;">平均绩点：{{sScores.avggpa}}</text>
+          <text class="cj-info-socre" style="color:#080808;"> 加权平均分：{{sScores.avgscore}}</text>
+        </view>
+        <view class="cj-info">
+          <text class="cj-info-name" style="color:#080808;">注：平均成绩以教务成绩为准</text>
         </view>
       </view>
     </view>

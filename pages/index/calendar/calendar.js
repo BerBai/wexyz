@@ -12,7 +12,8 @@ Page({
    */
   data: {
     isLoading: true,
-    jsonContent: ''
+    jsonContent: '',
+    toweek:''
   },
 
   /**

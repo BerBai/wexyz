@@ -1,2 +1,44 @@
-<!--pages/index/freeRoom/detial.wxml-->
+<!-- wxml不支持复杂函数，用wxs引入 -->
+<wxs module="fn">
+  module.exports = {
+    split: function(str) {
+      return str.split(',');
+    },
+    random: function() {
+      return Math.random();
+    }
+  }
+</wxs>
+<view wx:if="{{remind}}" class="remind-box">
+  <image wx:if="{{remind == '加载中'}}" class="remind-img" src="/images/loading.gif"></image>
+  <block wx:else>
+    <image class="remind-img" src="/images/index/nothing.png"></image>
+    <text class="remind-text">{{remind}}</text>
+  </block>
+</view>
+<view wx:else>
+  <view class="weui-loadmore">
+    <text class="weui-loadmore__tips">查询结果如下</text>
+    <text class="weui-loadmore__tips" style='padding-top: 10px;'>{{rooms.msg}}</text>
+  </view>
 
+  <view class="weui-loadmore weui-loadmore_line" wx:if='{{roomlength == 0}}'>
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+  </view>
+
+  <wux-sticky scrollTop="{{ scrollTop }}">
+    <wux-sticky-item wx:for="{{freeroom}}" wx:key="house">
+      <view slot="title">{{xq[index]}}</view>
+      <view slot="content" class="weui-cells weui-cells_after-title text" wx:for="{{item}}" wx:key="room">
+        <view class="weui-cell">
+          <view class="weui-cell__hd">
+            <image src="/images/index/freeRoom/classroom-icon.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+          </view>
+          <view class="weui-cell__bd">{{item.pos}}</view>
+          <view class="weui-cell__ft">节次{{item.cj}}</view>
+        </view>
+      </view>
+    </wux-sticky-item>
+
+  </wux-sticky>
+</view>

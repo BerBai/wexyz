@@ -1,1 +1,1 @@
-/* pages/index/freeRoom/detial.wxss */
+@import './freeRoom.wxss';

@@ -1,12 +1,12 @@
 <!-- 学校各系部电话号码通讯录专页 -->
-<view class="remind-box" wx:if="{{isLoading}}">
+<view class="remind-box" wx:if="{{isLoading=='加载中'}}">
   <image class="remind-img" src="/images/loading.gif"></image>
 </view>
 <view class="page" wx:else>
   <view class="page__hd">
     <view class="page__title">各系部联系电话</view>
     <view class="page__desc" style='color:#000;'>
-      <text>学校各系、各部门办公联系电话\n\r点击号码可以直接拨打，长按号码复制到粘贴版</text>
+      <text>湖南工商大学各系、各部门办公联系电话\n\r点击号码可以直接拨打，长按号码复制到粘贴版</text>
     </view>
   </view>
 

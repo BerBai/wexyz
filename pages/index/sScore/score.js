@@ -1,8 +1,8 @@
 // pages/index/score/score.js
 import {
-  IndexModel
-} from '../../../models/index.js'
-let indexModel = new IndexModel()
+  HutbIndexModel
+} from '../../../models/hutbindex.js'
+let indexModel = new HutbIndexModel()
 // 获取app实例
 const app = getApp()
 Page({
@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    remind:'加载中',
+    remind: '加载中',
     terms: [],
     user: [],
     scores: []
@@ -27,25 +27,20 @@ Page({
     // 从缓存中获取
     var terms = wx.getStorageSync('terms') || []
     var term = wx.getStorageSync('termdata') || []
-    term = term.xnxqh
+    term = term.term
     // 获取成绩
-    var user = wx.getStorageSync('token') || [],
+    var user = wx.getStorageSync('stuInfo').data || [],
       token = wx.getStorageSync('token') || [],
       scores = [],
       nscore = [],
       i
-
-    indexModel.getCjcx(token.id, token.token, term, (res) => {
-      console.log(res)
-      nscore = res
-      if (res.token == -1) {
-        wx.showToast({
-          title: '请重新登录',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    // 判断是否存在数据
+    var isTrue = wx.getStorageSync('terms') || []
+    // console.log("istrue", isTrue)
+    if (isTrue.length === 0)
+      // 获取全部成绩
+      var isflag = app.getScores()
+    console.log("isflag", isflag)
     for (i = 0; i < terms.length; i++) {
       scores[i] = wx.getStorageSync(terms[i])
       if (terms[i] === term) {

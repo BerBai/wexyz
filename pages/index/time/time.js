@@ -171,8 +171,8 @@ Page({
       // console.log(res.target)
     }
     return {
-      title: '校车时间',
-      path: "pages/index/xcar/xcar"
+      title: '湖工商-作息时间表',
+      path: "pages/index/time/time"
     }
   }
 })

@@ -257,15 +257,15 @@ Page({
     var _this = this;
     var week = _this.data.week;
     var dataset = e.currentTarget.dataset;
-    console.log('点击课程',dataset)
-    
+    console.log('点击课程', dataset)
+
     var lessons = Array.from(_this.data.lessons[dataset.day][dataset.key]);
     var targetI = 0;
     console.log('课程具体', lessons)
     lessons[dataset.cid].target = true;
 
     lessons.map(function(e, i) {
-      console.log('lessons.map(function(e,i)',e,i)
+      console.log('lessons.map(function(e,i)', e, i)
       if (lessons.length === 1) {
         e.left = 0;
       } else {
@@ -288,7 +288,7 @@ Page({
         lessons[i].target = false;
       }
     });
-    if (lessons.length==0) {
+    if (lessons.length == 0) {
       return false;
     }
     _this.setData({
@@ -410,7 +410,7 @@ Page({
 
     function kbRender(_data, _this) {
       var i, ilen, j;
-      var colors = ['#ff9ff3','#0984e3','#00b894','#fdcb6e','#e84393','#00cec9','#81ecec','#6c5ce7','#e17055','#a29bfe','#74b9ff','#55efc4', '#009688','#ffeaa7', '#4cb4e7', '#ffc09f', '#ffee93', '#efcee8', '#f3d7b5', '#daf9ca'];
+      var colors = ['#ff9ff3', '#0984e3', '#00b894', '#fdcb6e', '#e84393', '#00cec9', '#81ecec', '#6c5ce7', '#e17055', '#a29bfe', '#74b9ff', '#55efc4', '#009688', '#ffeaa7', '#4cb4e7', '#ffc09f', '#ffee93', '#efcee8', '#f3d7b5', '#daf9ca'];
       var color_box = {},
         color;
       var _lessons = _data;
@@ -430,7 +430,7 @@ Page({
         for (j = 1; j <= 6; j++) {
           var s_time = _lessons[i][j].st
           var e_time = _lessons[i][j].et
-          
+
           switch (_lessons[i][j].length) {
             case 0:
               break;
@@ -515,5 +515,166 @@ Page({
    */
   onShareAppMessage: function() {
 
-  }
+  },
+  // 保存课表为图片
+  eventDraw() {
+    var that = this;
+    if (that.data.shareImage != '') {
+      wx.previewImage({
+        urls: [that.data.shareImage],
+      })
+      wx.showToast({
+        title: '图片已存至相册，可发给好友或设为壁纸',
+        icon: 'none',
+        duration: 3000
+      })
+      return
+    }
+    wx.showLoading({
+      title: '绘制分享图片中',
+      mask: true
+    })
+    const deviceInfo = wx.getSystemInfoSync();
+    const screenWidth = deviceInfo.screenWidth;
+    const screenHeight = deviceInfo.screenHeight;
+    let topMargin = 10;
+    if (screenHeight / screenWidth >= 1.8) {
+      //检测是否为全面屏
+      topMargin = 30;
+    }
+    var viewsArr = [{
+      type: 'rect',
+      background: '#fff',
+      top: 0,
+      left: 0,
+      width: screenWidth,
+      height: screenHeight
+    }];
+    //绘制星期
+    const weekArr = ['周一', '周二', '周三', '周四', '周五'];
+    for (let i = 0; i < weekArr.length; i++) {
+      let rowTempArr = {
+        type: 'text',
+        content: weekArr[i],
+        fontSize: 16,
+        color: '#402D16',
+        textAlign: 'left',
+        top: topMargin,
+        left: 30 + (i * ((screenWidth - 30) / weekArr.length)),
+        bolder: true
+      };
+      viewsArr.push(rowTempArr);
+    }
+    //绘制节数
+    for (let i = 1; i <= 12; i++) {
+      let columnTempArr = {
+        type: 'text',
+        content: i,
+        fontSize: 16,
+        color: '#402D16',
+        textAlign: 'center',
+        top: (topMargin - 30) + (i * ((screenHeight - 30) / 12)),
+        left: 10,
+        bolder: true
+      };
+      viewsArr.push(columnTempArr);
+    }
+
+    const allCourseArr = that.data.classJson.course;
+    let j = 0;
+    for (let w in allCourseArr) {
+      if (j < 5) {
+        for (let i in allCourseArr[w]) {
+          try {
+            if (allCourseArr[w][i].courseName.length > 0) {
+              let classTempBgArr = {
+                type: 'rect',
+                background: '#7acfa6',
+                top: (topMargin + 30) + (2 * (i - 1) * ((screenHeight - 30) / 12)),
+                left: Number(30 + (j * ((screenWidth - 30) / weekArr.length))),
+                width: ((screenWidth - 30) / weekArr.length) - 1,
+                height: (1 * ((screenHeight - 30) / 6)) - 1
+              };
+              viewsArr.push(classTempBgArr);
+              let classTextTempArr = {
+                type: 'text',
+                content: allCourseArr[w][i].place + ' ' + allCourseArr[w][i].courseName,
+                fontSize: 16,
+                color: '#fff',
+                textAlign: 'left',
+                top: (topMargin + 30) + (2 * (i - 1) * ((screenHeight - 30) / 12) + 5),
+                left: Number(30 + (j * ((screenWidth - 30) / weekArr.length)) + 5),
+                breakWord: true,
+                MaxLineNumber: 7,
+                width: ((screenWidth - 30) / weekArr.length) - 20
+              };
+              viewsArr.push(classTextTempArr);
+            }
+          } catch (error) {
+            let classTempBgArr = {
+              type: 'rect',
+              background: '#7acfa6',
+              top: (topMargin + 30) + (2 * (i - 1) * ((screenHeight - 30) / 12)),
+              left: Number(30 + (j * ((screenWidth - 30) / weekArr.length))),
+              width: ((screenWidth - 30) / weekArr.length) - 1,
+              height: (1 * ((screenHeight - 30) / 6)) - 1
+            };
+            viewsArr.push(classTempBgArr);
+            let classTextTempArr = {
+              type: 'text',
+              content: allCourseArr[w][i][0].place + allCourseArr[w][i][0].courseName + ' ' + allCourseArr[w][i][1].place + allCourseArr[w][i][1].courseName,
+              fontSize: 16,
+              color: '#fff',
+              textAlign: 'left',
+              top: (topMargin + 30) + (2 * (i - 1) * ((screenHeight - 30) / 12) + 5),
+              left: Number(30 + (j * ((screenWidth - 30) / weekArr.length)) + 5),
+              breakWord: true,
+              MaxLineNumber: 7,
+              width: ((screenWidth - 30) / weekArr.length) - 20
+            };
+            viewsArr.push(classTextTempArr);
+          }
+        }
+        j++;
+      }
+    }
+    var canvasJson = {
+      width: screenWidth,
+      height: screenHeight,
+      views: viewsArr
+    };
+    that.setData({
+      painting: canvasJson
+    })
+  },
+  eventGetImage(event) {
+    var that = this;
+    console.log(event)
+    wx.hideLoading()
+    const {
+      tempFilePath,
+      errMsg
+    } = event.detail
+    if (errMsg === 'canvasdrawer:ok') {
+      this.setData({
+        shareImage: tempFilePath
+      })
+      wx.previewImage({
+        urls: [tempFilePath],
+      })
+      that.eventSave();
+    }
+  },
+  eventSave() {
+    wx.saveImageToPhotosAlbum({
+      filePath: this.data.shareImage,
+      success(res) {
+        wx.showToast({
+          title: '图片已存至相册，可发给好友或设为壁纸',
+          icon: 'none',
+          duration: 3000
+        })
+      }
+    })
+  },
 })

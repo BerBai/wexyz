@@ -1,35 +1,33 @@
-// pages/index/freeRoom/detial.js
+// pages/index/webill/webill.js
+var util = require('../../../utils/util.js');
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    remind: '加载中',
-    freeroom: [],
-    info: [],
-    roomlength: 0,
-    scrollTop: 0,
-    xq:["","星期一","星期二","星期三","星期四","星期五","星期六","星期天"]
+    time: '',
   },
-  onPageScroll(e) {
-    console.log('onPageScroll', e.scrollTop)
-    this.setData({
-      scrollTop: e.scrollTop,
+
+  //改房间
+  changeRoom: function() {
+    // app._room.building = "";
+    // app._room.roomNo = "";
+    wx.setStorageSync('building', '');
+    wx.setStorageSync('roomNo', '');
+    wx.redirectTo({
+      url: './webind'
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var classroom = wx.getStorageSync('freeroom'),
+    var time = util.formatTime(new Date(), ''),
       _this = this
-
     _this.setData({
-      'remind': '',
-      'roomlength':classroom.total,
-      'freeroom': classroom.list,
-      'info': classroom.info,
+      'time' : time,
     })
   },
 

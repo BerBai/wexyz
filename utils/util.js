@@ -17,6 +17,8 @@ function formatTime(date, t) {
   var second = date.getSeconds();
   if (t === 'h:m') {
     return [hour, minute].map(formatNumber).join(':');
+  } else if (t === 'm-d h:m') {
+    return [month, day].map(formatNumber).join('-') + ' ' + [hour, minute].map(formatNumber).join(':');
   } else {
     return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':');
   }

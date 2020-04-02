@@ -5,6 +5,11 @@ import {
 let indexModel = new IndexModel()
 
 import {
+  HutbIndexModel
+} from '/models/hutbindex.js'
+let hutbIndexModel = new HutbIndexModel()
+
+import {
   LoginModel
 } from '/models/hutblogin.js'
 let loginModel = new LoginModel()
@@ -118,11 +123,13 @@ App({
     // 从缓存中获取
     var terms = wx.getStorageSync('terms') || []
     _this._token = wx.getStorageSync('token')
+    var  userinfo = _this._user.user.data
 
     // 计算全部学期
     if (terms.length == 0 && this._user) {
+      var rxnf = userinfo.rxnf
       var i, j, z = 0,
-        year = parseInt(this._user.user.rxnf)
+        year = parseInt(rxnf)
       for (i = 1; i <= 4; i++) {
         for (j = 1; j <= 2; j++) {
           terms[z] = year + '-' + (year + 1) + '-' + j
@@ -137,14 +144,16 @@ App({
       scores = [],
       i
     for (i = 0; i < terms.length; i++) {
-      scores[i] = wx.getStorageSync(terms[i])
-      if (scores[i].length == 0) {
-        indexModel.getCjcx(token.id, token.token, terms[i], (res) => {
+      // scores[i] = wx.getStorageSync(terms[i])
+      // if (scores[i].length == 0) {
+        hutbIndexModel.getScore(token.token, terms[i], (res) => {
           // console.log(res)
+          scores[i] = res.data
         })
-      }
+      // }
     }
     this.scores = scores
+    return true
   },
   _user: {
     //微信数据
@@ -152,6 +161,7 @@ App({
     //学生或老师数据
     user: {}
   },
+  _room: {}, //寝室信息
   _time: {}, //当前学期周数
   _token: '',
   scores: {},

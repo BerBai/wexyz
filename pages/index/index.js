@@ -1,6 +1,6 @@
 //导入js文件
 var util = require('../../utils/util.js');
-import { 
+import {
   HutbIndexModel
 } from '../../models/hutbindex.js'
 import {
@@ -67,8 +67,8 @@ Page({
         //   teacher_disabled: true,
         //   offline_disabled: false
         // }
-      ],[
-        {
+      ],
+      [{
           id: 'changePwd',
           name: '修改密码',
           disabled: false,
@@ -114,12 +114,15 @@ Page({
         _this.data.cores[0].push(res.items[i])
       }
       // 加载第二页
-      if(res.total > 8) {
+      if (res.total > 8) {
         indexModel.getFunc(2, 8, 1, (res2) => {
-          console.log('获取第二页九宫格', res)
-          for (var i = 0; i < res['items'].length; i++) {
-            _this.data.cores[1].push(res.items[i])
+          console.log('获取第二页九宫格', res2)
+          for (var i = 0; i < res2['items'].length; i++) {
+            _this.data.cores[1].push(res2.items[i])
           }
+          _this.setData({
+            cores: _this.data.cores
+          })
         })
       }
 
@@ -144,11 +147,11 @@ Page({
       console.log('token缓存', token)
       const promise = new Promise((resolve, reject) => {
         loginModel.getCurrentTime('', (res) => {
-          console.log('termdata',res)
+          console.log('termdata', res)
         })
         loginModel.reLogin(token.encoded, (res) => {
           resolve(res)
-          
+
         })
       })
       promise.then(res => {
@@ -235,7 +238,7 @@ Page({
       //   timetable = res
       //   console.log(timetable)
       // })
-      //第一次获取成绩
+      // 第一次获取成绩
       // var isTrue = wx.getStorageSync(terms[0]) || []
       // console.log("istrue", isTrue)
       // if (isTrue.length === 0)

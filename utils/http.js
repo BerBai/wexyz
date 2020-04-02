@@ -4,7 +4,7 @@ import {
 
 //待补充
 const tips = {
-  1: '请检查网络',
+  1: '请求超时，请检查网络',
   400: '没找到资源，请反馈',
   5: '错误网关'
 }
@@ -35,6 +35,7 @@ export class HTTP {
       },
       fail: (res) => {
         //其它错误返回 1
+        console.log(res)
         this._show_error(1) 
       }
     })

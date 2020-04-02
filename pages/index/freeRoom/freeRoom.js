@@ -3,9 +3,10 @@ import {
 } from '../../../components/index'
 
 import {
-  IndexModel
-} from '../../../models/index.js'
-let indexModel = new IndexModel()
+  HutbIndexModel
+} from '../../../models/hutbindex.js'
+
+let indexModel = new HutbIndexModel();
 //获取应用实例
 var app = getApp();
 
@@ -66,13 +67,121 @@ Page({
     ],
     value1: [],
     time: '', //日期
-
-    idleTimeT: '全天',
-    idleTime: 'allday',
+    termtime: [],
+    idleZcT: '第一周',
+    idleZc: 1,
+    zc: [{
+      value: '1',
+      label: '第一周',
+    }, {
+      value: '2',
+      label: '第二周',
+    }, {
+      label: '第三周',
+      value: 3,
+    }, {
+      label: '第四周',
+      value: 4,
+    }, {
+      label: '第五周',
+      value: 5,
+    }, {
+      label: '第六周',
+      value: 6,
+    }, {
+      label: '第七周',
+      value: 7,
+    }, {
+      label: '第八周',
+      value: 8,
+    }, {
+      label: '第九周',
+      value: 9,
+    }, {
+      label: '第十周',
+      value: 10,
+    }, {
+      label: '第十一周',
+      value: 11,
+    }, {
+      label: '第十二周',
+      value: 12,
+    }, {
+      label: '第十三周',
+      value: 13,
+    }, {
+      label: '第十四周',
+      value: 14,
+    }, {
+      label: '第十五周',
+      value: 15,
+    }, {
+      label: '第十六周',
+      value: 16,
+    }, {
+      label: '第十七周',
+      value: 17,
+    }, {
+      label: '第十八周',
+      value: 18,
+    }, {
+      label: '第十九周',
+      value: 19,
+    }, {
+      label: '第二十周',
+      value: 20,
+    }
+    // , {
+    //   label: '第二十一周',
+    //   value: 21,
+    // }, {
+    //   label: '第二十二周',
+    //   value: 22,
+    // }, {
+    //   label: '第二十三周',
+    //   value: 23,
+    // }, {
+    //   label: '第二十四周',
+    //   value: 24,
+    // }, {
+    //   label: '第二十五周',
+    //   value: 25,
+    // }, {
+    //   label: '第二十六周',
+    //   value: 26,
+    // }, {
+    //   label: '第二十七周',
+    //   value: 27,
+    // }, {
+    //   label: '第二十八周',
+    //   value: 28,
+    // }, {
+    //   label: '第二十九周',
+    //   value: 29,
+    // }, {
+    //   label: '第三十周',
+    //   value: 30,
+    // }
+    ],
+    idleJcT: '上午',
+    idleJc: '01-04',
+    jc: [{
+      label: '上午',
+      value: '01-04',
+    }, {
+      label: '下午',
+      value: '05-08',
+    }, {
+      label: '晚上',
+      value: '09-12',
+    }, {
+      label: '全天',
+      value: '01-12',
+    }],
     rooms: [],
     scrollTop: 0,
     isShow: false,
-    isLoad: false
+    isLoad: false // 提交状态
   },
   onPageScroll(e) {
     console.log('onPageScroll', e.scrollTop)
@@ -80,7 +189,7 @@ Page({
       scrollTop: e.scrollTop,
     })
   },
-
+  // 校区/教学楼选择
   onOpenXq() {
     this.setData({
       visible1: true
@@ -105,6 +214,46 @@ Page({
     })
     console.log('onChangeXq', e.detail)
   },
+  // 周次选择
+  onOpenZc() {
+    this.setData({
+      visible2: true
+    })
+  },
+  onCloseZc() {
+    this.setData({
+      visible2: false
+    })
+  },
+  onChangeZc(e) {
+    var idleZcT = e.detail.options[0].label,
+      idleZc = e.detail.options[0].value
+    console.log(e)
+    this.setData({
+      idleZcT: idleZcT,
+      idleZc: idleZc
+    })
+  },
+  // 节次选择
+  onOpenJc() {
+    this.setData({
+      visible3: true
+    })
+  },
+  onCloseJc() {
+    this.setData({
+      visible3: false
+    })
+  },
+  onChangeJc(e) {
+    var idleJcT = e.detail.options[0].label,
+      idleJc = e.detail.options[0].value
+    console.log(e)
+    this.setData({
+      idleJcT: idleJcT,
+      idleJc: idleJc
+    })
+  },
   //获取时间
   openCalendar() {
     const now = new Date()
@@ -123,46 +272,26 @@ Page({
       },
     })
   },
-  selTime: function() {
-    $wuxSelect('#idleTimeT').open({
-      value: this.data.idleTimeT,
-      options: [{
-        title: '全天',
-        value: 'allday',
-      }, {
-        title: '上午',
-        value: 'am',
-      }, {
-        title: '下午',
-        value: 'pm',
-      }, {
-        title: '晚上',
-        value: 'night',
-      }],
-      onConfirm: (value, index, options) => {
-        console.log('onConfirm', value, index, options)
-        if (index !== -1) {
-          this.setData({
-            idleTime: value,
-            idleTimeT: options[index].title,
-          })
-        }
-      },
-    })
-  },
+  // 提交
   onClick: function() {
     var _this = this
     _this.setData({
       isLoad: true
     })
-    var time = _this.data.time,
+    //token, xnxqh, xqid, jzwid, zc1, zc2, jc1, jc2
+    var jc = _this.data.idleJc.split('-')
+    var xnxqh = _this.data.termtime.term,
       xqid = _this.data.xqid,
-      jxlid = _this.data.jxlid,
-      idleTime = _this.data.idleTime,
+      jzwid = _this.data.jxlid,
+      zc1 = _this.data.idleZc,
+      zc2 = _this.data.idleZc,
+      jc1 = jc[0],
+      jc2 = jc[1],
       token = wx.getStorageSync('token').token || ''
-    console.log(idleTime, token, time, xqid, jxlid)
-    if (time && xqid && idleTime) {
-      indexModel.getKxJscx(idleTime, token, time, xqid, jxlid, (res) => {
+
+    console.log(xnxqh, token, xqid, jzwid, zc1, zc2, jc1, jc2)
+    if (xqid && jzwid && zc1 && zc2 && jc1 && jc2) {
+      indexModel.getFreeClassroom(token, xnxqh, xqid, jzwid, zc1, zc2, jc1, jc2, (res) => {
         console.log(res)
         // if (res.success)
         _this.setData({
@@ -170,6 +299,15 @@ Page({
           isLoad: false,
           isShow: true
         })
+        wx.navigateTo({
+          url: './detial',
+        })
+      })
+
+    } else {
+      app.showTips("提示", "请检查选项填写")
+      _this.setData({
+        isLoad: false
       })
     }
   },
@@ -178,12 +316,16 @@ Page({
    */
   onLoad: function(options) {
     var _this = this,
-      now = new Date();
+      now = new Date(),
+      termdata = wx.getStorageSync('termdata');
     var day = now.getDate() > 9 ? now.getDate() : '0' + now.getDate()
     var time = now.getFullYear() + '-' + 0 + (now.getMonth() + 1) + '-' + day
     _this.setData({
       time: time,
-      year: now.getFullYear()
+      termtime: termdata,
+      year: now.getFullYear(),
+      idleZc: termdata.toweek,
+      idleZcT: _this.data.zc[termdata.toweek - 1].label
     })
   },
 

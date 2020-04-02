@@ -1,0 +1,7 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "水电费",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#73b4ef",
+  "backgroundColor": "#73b4ef"
+}

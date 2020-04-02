@@ -1,0 +1,11 @@
+@import '/onestyle.wxss';
+
+.dormitory-resetBtn {
+  font-size: 9pt;
+  padding: 5rpx 20rpx;
+  text-align: center;
+  background-color: #ffcb63;
+  border-radius: 3px;
+  color: #fff;
+}
+

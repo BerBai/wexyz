@@ -1,0 +1,70 @@
+<!--pages/index/yicard/yicard.wxml-->
+<view class="container">
+  <view wx:if="{{remind}}" class="remind-box">
+    <image wx:if="{{remind == '加载中'}}" class="remind-img" src="/images/loading.gif"></image>
+    <block wx:else>
+      <image class="remind-img" src="/images/index/nothing.png"></image>
+      <text class="remind-text">{{remind}}</text>
+    </block>
+  </view>
+  <block wx:else>
+    <view class="ykt-card">
+      <view class="ykt-black-line">湖南工商大学　　一卡通</view>
+      <view class="ykt-content">
+        <view class="ykt-ye">
+          <text class="ykt-ye-name">余额</text>
+          <view class="ykt-ye-money">
+            <text class="ykt-ye-value">0.8{{balance}}</text>元
+          </view>
+        </view>
+        <view class="ykt-img" style="color:white;font-size:18px;">
+          <!-- <image src="/images/core/ykt/card-bg.png"></image> -->
+          {{name}}
+        </view>
+      </view>
+      <view class="ykt-card-more">
+        <text class="ykt-ye-time">截至时间：{{time}}{{last_time}}</text>
+        <text class="ykt-ye-id">卡号：160920088{{ykt_id}}</text>
+      </view>
+    </view>
+
+    <text class="grid-remind">本月交易情况（显示前3条）：</text>
+    <!-- <view class="balance-consumption" bindtap="switchBtn">
+      <text class="{{switchBtn ? 'current-btn' : ''}}" id="balance">余额</text>
+      <text class="{{switchBtn ? '' : 'current-btn'}}" id="cost">交易额</text>
+    </view>
+    <view class="grid-wraper">
+      <view wx:if="{{canvas_remind}}" class="remind-box">
+        <image wx:if="{{canvas_remind == '加载中'}}" class="remind-img" src="/images/index/loading.gif"></image>
+      </view>
+      <block wx:else>
+        <canvas id="ykt-canvas" canvas-id="firstCanvas" bindtap="canvasTap"></canvas>
+        <view class="line" style="left: {{lineLeft}}px;"></view>
+        <view class="y-text">{{switchBtn ? "余额" : "交易额"}}</view>
+        <view class="x-text">最近交易</view>
+      </block>
+    </view> -->
+    <!-- <text class="detail-remind">点击上图查看对应交易详情</text> -->
+    <block wx:for="{{bills}}">
+      <view class="ykt-detail-wraper">
+        <view class="ykt-head">
+          <text class="ykt-type-name">#{{index+1}}交易详情</text>
+        </view>
+        <view class="detail-list">
+          <view class="detail-item">
+            <text class="detail-item-label">交易时间</text>
+            <text class="detail-item-value">{{item.time}}</text>
+          </view>
+          <view class="detail-item">
+            <text class="detail-item-label">交易类型</text>
+            <text class="detail-item-value">{{item.type}}</text>
+          </view>
+          <view class="detail-item">
+            <text class="detail-item-label">交易金额</text>
+            <text class="detail-item-value">{{item.money}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+</view>
