@@ -1,22 +1,41 @@
-<view class="bd">
-  <form class="login-form">
-    <view class="input-group {{userid_focus ? 'active' : ''}}">
-      <text class="input-label">寝室</text>
-      <input type="number" cursor-spacing="30" id="userid" maxlength="10" placeholder="请输入寝室，如：萃雅2" bindinput="useridInput" bindfocus="inputFocus" bindblur="inputBlur" />
+<block wx:for-items="{{xq}}" wx:for-index="fid" wx:key="{{item.id}}">
+  <view class="kind-list-item">
+    <view id="{{item.id}}" class="kind-list-item-hd " bindtap="kindToggle">
+      <!-- {{item.open ? 'kind-list-item-hd-show' : ''}}" 展開顔色變淺 -->
+      <view class="kind-list-text">{{item.name}}</view>
     </view>
-    <view class="input-group {{userid_focus ? 'active' : ''}}">
-      <text class="input-label">寝室号</text>
-      <input type="number" cursor-spacing="30" id="userid" maxlength="10" placeholder="请输入寝室号，如：529" bindinput="useridInput" bindfocus="inputFocus" bindblur="inputBlur" />
+    <!-- 二級 -->
+    <view class="kind-list-item-bd {{item.open ? 'kind-list-item-bd-show' : ''}}">
+      <view class="navigator-box {{item.open ? 'navigator-box-show' : ''}}">
+        <view wx:for="{{item.gy}}" wx:for-item="gy" wx:for-index="gid" wx:key="item">
+          <view class="navigator" data-fid="{{fid}}" data-xqid="{{item.id}}" id="{{gy.id}}" bindtap="kindToggle2">
+            <view class="kind-list-text">{{gy.name}}</view>
+          </view>
+          <!-- 三級 -->
+          <view class="kind-list-item-bd list3 {{gy.open ? 'kind-list-item-bd-show' : ''}}">
+            <view class="navigator-box {{gy.open ? 'navigator-box-show' : ''}}">
+              <block wx:for="{{gy.lc}}" wx:for-item="lc" wx:key="item">
+                <view class="navigator" data-fid="{{fid}}" data-xqid="{{item.id}}" data-gid="{{gid}}" data-gyid="{{gy.id}}" id="{{lc.id}}" bindtap="kindToggle3">
+                  <view class="navigator-text">{{lc.name}}</view>
+                </view>
+                <view class="kind-list-item-bd list3 {{lc.open ? 'kind-list-item-bd-show' : ''}}">
+                  <view class="navigator-box fjinput {{lc.open ? 'navigator-box-show' : ''}}">
+                    <text class="input-label">寝室号</text>
+                    <input class="input-text" type="number" cursor-spacing="30" id="fjid" maxlength="10" placeholder="如：529" bindinput="fjidInput" />
+                    <van-button type="primary" size="mini" bind:click="summit">✔</van-button>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
     </view>
-  </form>
-  <view class="confirm-btn" bindtap="next">
-    <text>提交</text>
   </view>
+</block>
 
-  <!-- <view>
-    <text class='text'>注意：
-    　　1.。
-    　　2.密码修改后将会与湖南工商大学的教务管理系统密码保持一致。
-    　　3.如果以上方式无法找回密码，请联系网络中心老师。</text>
-  </view> -->
+<view>
+  <text class='text'>注意：
+    　　1.确保寝室信息正确，否则获取不到水电费余量。
+    　　2.寝室号与楼层一定要正确。</text>
 </view>

@@ -47,7 +47,7 @@ App({
     });
   },
   //带返回页面的提示
-  showTips(title, content, pages = '', tabPages = '') {
+  showTips(title, content, pages = '', tabPages = '', backPages = '') {
     wx.showModal({
       title: title,
       content: content,
@@ -63,9 +63,22 @@ App({
           wx.switchTab({
             url: tabPages
           })
+        } else if (backPages) {
+          // 回退页面
+          wx.navigateBack({
+            url: backPages
+          })
         }
       }
     })
+  },
+  // 重新登录
+  reLogin: function(e) {
+    var token = wx.getStorageSync('token') || false
+    if (token)
+      loginModel.reLogin(token.encoded, (res) => {
+        console.log('app.reLogin', res)
+      })
   },
   //判断是否有登录信息，让分享时自动登录
   loginLoad: function(onLoad) {
@@ -123,7 +136,7 @@ App({
     // 从缓存中获取
     var terms = wx.getStorageSync('terms') || []
     _this._token = wx.getStorageSync('token')
-    var  userinfo = _this._user.user.data
+    var userinfo = _this._user.user.data
 
     // 计算全部学期
     if (terms.length == 0 && this._user) {
@@ -146,10 +159,10 @@ App({
     for (i = 0; i < terms.length; i++) {
       // scores[i] = wx.getStorageSync(terms[i])
       // if (scores[i].length == 0) {
-        hutbIndexModel.getScore(token.token, terms[i], (res) => {
-          // console.log(res)
-          scores[i] = res.data
-        })
+      hutbIndexModel.getScore(token.token, terms[i], (res) => {
+        // console.log(res)
+        scores[i] = res.data
+      })
       // }
     }
     this.scores = scores
@@ -163,9 +176,10 @@ App({
   },
   _room: {}, //寝室信息
   _time: {}, //当前学期周数
+  auditing: {}, //蹭课列表
   _token: '',
   scores: {},
   notices: {},
   stuInfo: {},
-  opid: {}
+  opid: {},
 })

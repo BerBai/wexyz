@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "van-cell": "../../../components/vant/cell/index",
+    "van-cell-group": "../../../components/vant/cell-group/index",
+    "van-icon": "../../../components/vant/icon/index",
+    "van-card": "../../../components/vant/card/index",
+    "wux-sticky": "../../../components/sticky/index",
+    "wux-sticky-item": "../../../components/sticky-item/index"
+  },
+  "navigationBarTitleText": "蹭课"
+}

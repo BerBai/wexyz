@@ -12,7 +12,7 @@
           </view>
           <view class="time-box">
             <text class="time-term">{{time.data}}</text>
-            <text class="time-now">{{nowtime}}  星期{{days[time.date]}}</text>
+            <text class="time-now">{{nowtime}}  {{time.xq}}</text>
           </view>
         </view>
         <view class="info-bd">
@@ -46,11 +46,11 @@
     </navigator>
   </view>
 
-  <!-- <van-cell value="" icon="records" is-link link-type="navigateTo" url="/pages/user/information/information">
+  <van-cell wx:if="{{is_bind}}" value="" icon="records" is-link link-type="navigateTo" url="/pages/index/webill/webind">
     <view slot="title">
       <view class="van-cell-text">完善信息</view>
     </view>
-  </van-cell> -->
+  </van-cell>
   
   <van-cell value="" icon="volume-o" is-link link-type="navigateTo" url="/pages/notices/notices">
     <view slot="title">
@@ -77,7 +77,7 @@
       <view class="van-cell-text">关于</view>
     </view>
   </van-cell>
-  <!-- <van-cell value="" icon="gift-o" is-link link-type="navigateTo" url="/pages/user/zan/zan">
+  <van-cell value="" icon="gift-o" is-link link-type="navigateTo" url="/pages/user/zan/zan">
     <view slot="title">
       <view class="van-cell-text">赞赏</view>
     </view>
@@ -88,7 +88,7 @@
         <text style='color:#7acfa6; text-decoration:underline;'>555917997</text>
       </view>
     </view>
-  </van-cell> -->
+  </van-cell>
 
   <!-- 登录或授权按键 -->
   <view class="user-login">

@@ -55,7 +55,7 @@ Page({
         if(!res.status) {
           app.showTips('提示', res.msg)
         } else {
-          app.showTips('成功', '已获取密保', `/pages/user/mibao/mibao?cookie=${res.cookie}&id=${res.list.username}&pwdQuestion1=${res.list.pwdQuestion1}&pwdQuestion2=${res.list.pwdQuestion2}`)
+          app.showTips('成功', '已获取密保', `/pages/index/mibao/mibao?cookie=${res.cookie}&id=${res.list.username}&pwdQuestion1=${res.list.pwdQuestion1}&pwdQuestion2=${res.list.pwdQuestion2}`)
         }
       })
     }

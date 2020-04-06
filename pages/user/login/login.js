@@ -152,7 +152,7 @@ Page({
             wx.hideToast();
             wx.showToast({
               title: res.msg,
-              image: '/images/login/error.png',
+              image: 'cancel',
               duration: 2000
             })
           }

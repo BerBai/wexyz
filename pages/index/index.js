@@ -246,6 +246,8 @@ Page({
 
       // 获取当前学期
       app.getCurrentTime()
+      // 刷新登录
+      app.reLogin()
 
       _this.setData({
         is_bind: token.success

@@ -1,5 +1,9 @@
 // pages/index/webill/webill.js
 var util = require('../../../utils/util.js');
+import {
+  HutbIndexModel
+} from '../../../models/hutbindex.js'
+let hutbIndexModel = new HutbIndexModel()
 const app = getApp();
 Page({
 
@@ -8,14 +12,16 @@ Page({
    */
   data: {
     time: '',
+    room: '',
+    hassf: false,
+    sf: '',
+    hasdf: false,
+    df: '',
+    isLoad: '加载中'
   },
 
   //改房间
   changeRoom: function() {
-    // app._room.building = "";
-    // app._room.roomNo = "";
-    wx.setStorageSync('building', '');
-    wx.setStorageSync('roomNo', '');
     wx.redirectTo({
       url: './webind'
     })
@@ -25,10 +31,61 @@ Page({
    */
   onLoad: function(options) {
     var time = util.formatTime(new Date(), ''),
+      room = wx.getStorageSync('room') || false,
       _this = this
-    _this.setData({
-      'time' : time,
-    })
+    if (!room) {
+      wx.navigateTo({
+        url: './webind',
+      })
+    } else {
+      hutbIndexModel.getDf(room.id, (res) => {
+        try {
+          if (res.returnmsg == 'SUCCESS') {
+            _this.setData({
+              df: res,
+              hasdf: true
+            })
+          } else {
+            _this.setData({
+              df: res,
+              hasdf: false
+            })
+          }
+        } catch (e) {
+          _this.setData({
+            hasdf: false
+          })
+        }
+
+      })
+      hutbIndexModel.getSf(room.id, (res) => {
+        try {
+          if (res.returnmsg == 'SUCCESS') {
+            _this.setData({
+              sf: res,
+              hassf: true
+            })
+          } else {
+            _this.setData({
+              sf: res,
+              hassf: false
+            })
+          }
+
+        } catch (e) {
+          _this.setData({
+            hassf: false
+          })
+        }
+
+      })
+      _this.setData({
+        'time': time,
+        'room': room,
+        'isLoad': ''
+      })
+    }
+
   },
 
   /**
@@ -42,7 +99,57 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var time = util.formatTime(new Date(), ''),
+      room = wx.getStorageSync('room') || false,
+      _this = this
+    if (room ) {
+      hutbIndexModel.getDf(room.id, (res) => {
+        try {
+          if (res.returnmsg == 'SUCCESS') {
+            _this.setData({
+              df: res,
+              hasdf: true
+            })
+          } else {
+            _this.setData({
+              df: res,
+              hasdf: false
+            })
+          }
+        } catch (e) {
+          _this.setData({
+            hasdf: false
+          })
+        }
 
+      })
+      hutbIndexModel.getSf(room.id, (res) => {
+        try {
+          if (res.returnmsg == 'SUCCESS') {
+            _this.setData({
+              sf: res,
+              hassf: true
+            })
+          } else {
+            _this.setData({
+              sf: res,
+              hassf: false
+            })
+          }
+
+        } catch (e) {
+          _this.setData({
+            hassf: false
+          })
+        }
+
+      })
+      _this.setData({
+        'time': time,
+        'room': room,
+        'isLoad': ''
+      })
+    }
   },
 
   /**

@@ -9,7 +9,15 @@ export class LoginModel extends HTTP {
     this.request({
       url: `App.Hutb_Hutb.LoginNoVerifycode&username=${xh}&password=${password}`,
       success: (res) => {
-        wx.setStorageSync('token', res)
+        try {
+          if (res.success)
+            wx.setStorageSync('token', res)
+        } catch (e) {
+          wx.showToast({
+            icon: 'none',
+            title: 'login() error',
+          })
+        }
         sCallback(res)
       }
     })
@@ -18,7 +26,15 @@ export class LoginModel extends HTTP {
     this.request({
       url: `App.Hutb_Hutb.ReLogin&encoded=${encoded}`,
       success: (res) => {
-        wx.setStorageSync('token', res)
+        try {
+          if (res.success)
+            wx.setStorageSync('token', res)
+        } catch(e){
+          wx.showToast({
+            icon: 'none',
+            title: 'login2() error',
+          })
+        }
         sCallback(res)
       }
     })
@@ -36,7 +52,8 @@ export class LoginModel extends HTTP {
     this.request({
       url: `App.Hutb_Hutb.GetUserInfo&cookie=${token}`,
       success: (res) => {
-        wx.setStorageSync('stuInfo', res)
+        if (res.ret == 200)
+          wx.setStorageSync('stuInfo', res)
         sCallback(res)
       }
     })
@@ -46,7 +63,9 @@ export class LoginModel extends HTTP {
     this.request({
       url: `App.Hutb_Hutb.GetCurrentTime`,
       success: (res) => {
-        wx.setStorageSync('termdata', res)
+        console.log(res)
+        if (res.ret == 200)
+          wx.setStorageSync('termdata', res)
         sCallback(res)
       }
     })
@@ -95,7 +114,8 @@ export class LoginModel extends HTTP {
     this.request({
       url: `App.Hutb_Hutb.GetTabletime&xn=${xn}&cookie=${token}&zc=${zc}`,
       success: (res) => {
-        wx.setStorageSync('timetable', res),
+        if (res.status)
+          wx.setStorageSync('timetable', res)
         sCallback(res)
       }
     })

@@ -1,2 +1,30 @@
 <!--pages/index/wtclass/wtclass.wxml-->
-<text>pages/index/wtclass/wtclass.wxml</text>
+<view class="page">
+  <view class="page__hd">
+    <view style="display: flex;flex-direction: row;">
+      <view class="page__title">选择{{switchYx?'开课':'上课'}}院系</view>
+      <van-switch style="flex: 1;text-align: right;" bind:change="onSwitchYx" checked="{{ switchYx }}" size="24px" />
+    </view>
+    <view class="page__desc">点击右侧切换为上/开课院系</view>
+  </view>
+  <view class="page__bd">
+    <!-- <view class="sub-title">开课院系</view> -->
+    <wux-picker-view options="{{ kkyx }}" bind:scrollChange="onValueChange" />
+  </view>
+  <view class="confirm-btn" bindtap="next">
+    <text>下一步</text>
+  </view>
+
+  <view>
+    <text class='text'>注意：
+    　　1.选择开课院系则是该学院在当前学期开的课。
+    　　2.选择上课院系则是该学院的上课课程。</text>
+  </view>
+
+  <view class="weui-footer" style='margin-top:25px;'>
+    <view class="weui-footer__links">
+      <navigator url="/pages/user/about/about" class="weui-footer__link">微信公众号：涂诣</navigator>
+    </view>
+    <view class="weui-footer__text">Copyright @ {{year}} All Rights Reserved.</view>
+  </view>
+</view>

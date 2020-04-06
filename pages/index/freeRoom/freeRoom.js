@@ -71,97 +71,97 @@ Page({
     idleZcT: '第一周',
     idleZc: 1,
     zc: [{
-      value: '1',
-      label: '第一周',
-    }, {
-      value: '2',
-      label: '第二周',
-    }, {
-      label: '第三周',
-      value: 3,
-    }, {
-      label: '第四周',
-      value: 4,
-    }, {
-      label: '第五周',
-      value: 5,
-    }, {
-      label: '第六周',
-      value: 6,
-    }, {
-      label: '第七周',
-      value: 7,
-    }, {
-      label: '第八周',
-      value: 8,
-    }, {
-      label: '第九周',
-      value: 9,
-    }, {
-      label: '第十周',
-      value: 10,
-    }, {
-      label: '第十一周',
-      value: 11,
-    }, {
-      label: '第十二周',
-      value: 12,
-    }, {
-      label: '第十三周',
-      value: 13,
-    }, {
-      label: '第十四周',
-      value: 14,
-    }, {
-      label: '第十五周',
-      value: 15,
-    }, {
-      label: '第十六周',
-      value: 16,
-    }, {
-      label: '第十七周',
-      value: 17,
-    }, {
-      label: '第十八周',
-      value: 18,
-    }, {
-      label: '第十九周',
-      value: 19,
-    }, {
-      label: '第二十周',
-      value: 20,
-    }
-    // , {
-    //   label: '第二十一周',
-    //   value: 21,
-    // }, {
-    //   label: '第二十二周',
-    //   value: 22,
-    // }, {
-    //   label: '第二十三周',
-    //   value: 23,
-    // }, {
-    //   label: '第二十四周',
-    //   value: 24,
-    // }, {
-    //   label: '第二十五周',
-    //   value: 25,
-    // }, {
-    //   label: '第二十六周',
-    //   value: 26,
-    // }, {
-    //   label: '第二十七周',
-    //   value: 27,
-    // }, {
-    //   label: '第二十八周',
-    //   value: 28,
-    // }, {
-    //   label: '第二十九周',
-    //   value: 29,
-    // }, {
-    //   label: '第三十周',
-    //   value: 30,
-    // }
+        value: '1',
+        label: '第一周',
+      }, {
+        value: '2',
+        label: '第二周',
+      }, {
+        label: '第三周',
+        value: 3,
+      }, {
+        label: '第四周',
+        value: 4,
+      }, {
+        label: '第五周',
+        value: 5,
+      }, {
+        label: '第六周',
+        value: 6,
+      }, {
+        label: '第七周',
+        value: 7,
+      }, {
+        label: '第八周',
+        value: 8,
+      }, {
+        label: '第九周',
+        value: 9,
+      }, {
+        label: '第十周',
+        value: 10,
+      }, {
+        label: '第十一周',
+        value: 11,
+      }, {
+        label: '第十二周',
+        value: 12,
+      }, {
+        label: '第十三周',
+        value: 13,
+      }, {
+        label: '第十四周',
+        value: 14,
+      }, {
+        label: '第十五周',
+        value: 15,
+      }, {
+        label: '第十六周',
+        value: 16,
+      }, {
+        label: '第十七周',
+        value: 17,
+      }, {
+        label: '第十八周',
+        value: 18,
+      }, {
+        label: '第十九周',
+        value: 19,
+      }, {
+        label: '第二十周',
+        value: 20,
+      }
+      // , {
+      //   label: '第二十一周',
+      //   value: 21,
+      // }, {
+      //   label: '第二十二周',
+      //   value: 22,
+      // }, {
+      //   label: '第二十三周',
+      //   value: 23,
+      // }, {
+      //   label: '第二十四周',
+      //   value: 24,
+      // }, {
+      //   label: '第二十五周',
+      //   value: 25,
+      // }, {
+      //   label: '第二十六周',
+      //   value: 26,
+      // }, {
+      //   label: '第二十七周',
+      //   value: 27,
+      // }, {
+      //   label: '第二十八周',
+      //   value: 28,
+      // }, {
+      //   label: '第二十九周',
+      //   value: 29,
+      // }, {
+      //   label: '第三十周',
+      //   value: 30,
+      // }
     ],
     idleJcT: '上午',
     idleJc: '01-04',
@@ -179,6 +179,7 @@ Page({
       value: '01-12',
     }],
     rooms: [],
+    toweek: '',
     scrollTop: 0,
     isShow: false,
     isLoad: false // 提交状态
@@ -325,6 +326,7 @@ Page({
       termtime: termdata,
       year: now.getFullYear(),
       idleZc: termdata.toweek,
+      toweek: _this.data.zc[termdata.toweek - 1].label,
       idleZcT: _this.data.zc[termdata.toweek - 1].label
     })
   },

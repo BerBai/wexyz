@@ -1,13 +1,13 @@
 <view class="container home">
-  <!-- 顶部导航栏  -->
-  <view class="navTab">
-    <view bindtap="changeModule" class="{{curselected? 'selected' : '' }}">成绩查询</view>
-    <view bindtap="changeModule" class="{{!curselected? 'selected' : '' }}">预约</view>
-  </view>
-  <!-- 成绩查询 预约  -->
+  <!-- 导航栏  -->
+  <!-- <view class="navTab">
+    <view bindtap="changeModule" class="{{curselected? 'selected' : '' }}">查成绩</view>
+    <view bindtap="changeModule" class="{{!curselected? 'selected' : '' }}">查准考证</view>
+  </view> -->
+  <!-- 成绩查询   -->
   <view>
     <form bindsubmit="submitForm">
-      <view class="input-group {{name_focus ? 'active' : ''}}">
+      <view style="margin-top:50rpx" class="input-group {{name_focus ? 'active' : ''}}">
         <text class="input-label">
               <text class="left">姓</text>
         <text class="right">名</text>
@@ -15,34 +15,45 @@
         <input id="name" name="name" data-name="name" confirm-type="next" type="text" cursor-spacing="30" placeholder="请输入姓名" bindinput="checkInput" bindfocus="inputFocus" bindblur="inputBlur" />
       </view>
 
-      <view class="warn">{{nameWarn}}</view>
-      <view class="input-group {{idCard_focus ? 'active' : ''}}">
+      <view wx:if="{{!curselected}}" class="input-group {{idCard_focus ? 'active' : ''}}">
+        <text class="input-label">身份证</text>
+        <input id="idCard" name="idCard" data-name="idCard" confirm-type="next" type="text" type="number" cursor-spacing="30" placeholder="请输入身份证" bindinput="checkInput" bindfocus="inputFocus" bindblur="inputBlur" />
+      </view>
+      <view wx:else class="input-group {{id_focus ? 'active' : ''}}">
         <text class="input-label">准考证</text>
-        <input id="idCard" name="idCard" data-name="idCard" confirm-type="done" type="number" cursor-spacing="30" placeholder="请输入准考证号" bindinput="checkInput" bindfocus="inputFocus" bindblur="inputBlur" />
+        <input id="id" name="id" data-name="id" confirm-type="next" type="text" cursor-spacing="30" placeholder="请输入准考证号" bindinput="checkInput" bindfocus="inputFocus" bindblur="inputBlur" />
       </view>
-<!-- 
-      <view class="warn">{{idCardWarn}}</view>
-      <view class="inputWarp" wx:if="{{!curselected}}">
-        <view class="title">
-          <i class="left">手</i>
-          <i class="right">机</i>
-        </view>
-        <input name="tel" type="number" confirm-type="done" bindinput="checkInput" data-name="tel" />
+      <view wx:if="{{!curselected}}" class="input-group {{verimg_focus ? 'active' : ''}}">
+        <text class="input-label">验证码</text>
+        <input id="verimg" name="verimg" data-name="verimg" confirm-type="done" type="text" cursor-spacing="30" placeholder="请输入验证码" bindinput="checkInput" bindfocus="inputFocus" bindblur="inputBlur" />
+        <image bindtap="reVer" class="verimg" src="{{verimg}}" />
       </view>
-      <view class="warn">{{telWarn}}</view>
-      <view class="inputWarp" wx:if="{{!curselected}}">
-        <view class="title">
-          <i class="left">邮</i>
-          <i class="right">箱</i>
-        </view>
-        <input placeholder="可选填" name="email" type="text" confirm-type="done" bindinput="checkInput" data-name="email" />
-      </view>
-      <view class="warn">{{emailWarn}}</view> -->
       <button class="btn" formType="submit">
-        <view>{{curselected?'查询':'预约' }}</view>
+        <view>查询</view>
       </button>
     </form>
 
   </view>
-
+  <view class="result-view">
+    <block wx:if="{{result}}">
+      <view class="result" wx:if="{{result.isS}}">
+        <view class="resultTitle">查询结果</view>
+        <view class="baseinf">
+          <view class="examName">{{result.nametype}}</view>
+          <!-- <view class="name">{{'姓名：' + result.name}}</view> -->
+          <view class="time">{{'考试时间：' + result.sj}}</view>
+        </view>
+        <view class="score">
+          <view class="total">{{'总分：' + result.zf}}</view>
+        </view>
+      </view>
+      <view wx:else>
+        <view class="resultTitle">查询结果</view>
+        <view class="baseinf">
+          <view class="name text1">{{result.SubjectName}}</view>
+          <view class="school text1">准考证：{{result.TestTicket}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
 </view>

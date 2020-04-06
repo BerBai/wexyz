@@ -1,47 +1,53 @@
 <view class="container">
-  <view class="result-page" style='width:100%;z-index:9999;'>
-    <view class="result-userInfo result-model">
-      <view class="userInfo-dormitory">
-        <text class="dormitory-info">{{zhai}}萃雅2-529{{room}}寝室</text>
-        <view bindtap='changeRoom' class="dormitory-resetBtn">修改寝室</view>
-      </view>
-      <view class="userInfo-basic">
-        <text class="basic-time">截至时间：{{time}}</text>
-      </view>
-    </view>
-    <view class="result-chargeInfo">
-      <view class="chargeInfo-num chargeInfo-model result-model">
-        <text class="chargeInfo-model-title">剩余电量</text>
-        <view class="chargeInfo-model-info">
-          <text class="model-info">{{eleJson.Balance}}29.3</text>度
-        </view>
-      </view>
-    </view>
-    <view class="result-specificInfo result-model">
-      <view class="specificInfo-item">
-        <text class="specificInfo-item-label">上次充值电费</text>
-        <text class="specificInfo-item-value">50{{eleJson.LastRecharge}}</text>
-        <text>元</text>
-      </view>
-    </view>
-    <view class="result-chargeInfo">
-      <view class="chargeInfo-num chargeInfo-model result-model">
-        <text class="chargeInfo-model-title">剩余水量</text>
-        <view class="chargeInfo-model-info">
-          <text class="model-info">{{eleJson.Balance}}1.2</text>吨
-        </view>
-      </view>
-    </view>
-    <!-- <view wx:if="{{eleJson.Balance !== 'N/A'}}" class="result-chargeInfo" style='height:200px;margin-bottom:50px;'>
-      <view class="chargeInfo-num chargeInfo-model result-model" style='height:200px;'>
-        <canvas canvas-id="lineCanvas" disable-scroll="true" bindtouchstart="touchHandler" style='width:100%;height:200px;'></canvas>
-      </view>
-    </view> -->
-    <!-- <view class="result-chargeInfo" style='margin-bottom:50px;'>
-      <button open-type="share" class="chargeInfo-num chargeInfo-model result-model chargeInfo-model-info" style='line-height:1;'>
-        <text>分享我的宿舍用电信息</text>
-      </button>
-    </view> -->
-    <image class="sdf-bg" src="/images/bottom-bg.png" style='z-index: 9999;'></image>
+  <view wx:if="{{isLoad}}" class="remind-box">
+    <image wx:if="{{isLoad == '加载中'}}" class="remind-img" src="/images/loading.gif"></image>
+    <block wx:else>
+      <image class="remind-img" src="/images/index/nothing.png"></image>
+      <text class="remind-text">{{isLoad}}</text>
+    </block>
   </view>
+  <block wx:else>
+    <view class="result-page" style='width:100%;z-index:9999;'>
+      <view class="result-userInfo result-model">
+        <view class="userInfo-dormitory">
+          <text class="dormitory-info">{{room.gy}}-{{room.fj}}</text>
+          <view bindtap='changeRoom' class="dormitory-resetBtn">更改</view>
+        </view>
+        <view class="userInfo-basic">
+          <text class="basic-time">截至时间：{{time}}</text>
+        </view>
+      </view>
+      <view class="result-chargeInfo">
+        <view class="chargeInfo-num chargeInfo-model result-model">
+          <text class="chargeInfo-model-title">剩余电量</text>
+          <view class="chargeInfo-model-info">
+            <block wx:if="{{hasdf}}">
+              <text class="model-info">{{df.quantity}}</text>度
+            </block>
+            <text wx:else>暂未获取到电量信息，请稍后尝试</text>
+          </view>
+        </view>
+      </view>
+      <!-- <view class="result-specificInfo result-model">
+        <view class="specificInfo-item">
+          <text class="specificInfo-item-label">上次充值电费</text>
+          <text class="specificInfo-item-value">{{eleJson.LastRecharge}}</text>
+          <text>元</text>
+        </view>
+      </view> -->
+      <view class="result-chargeInfo">
+        <view class="chargeInfo-num chargeInfo-model result-model">
+          <text class="chargeInfo-model-title">剩余水量</text>
+          <view class="chargeInfo-model-info">
+            <block wx:if="{{hassf}}">
+              <text class="model-info">{{sf.quantity}}</text>吨
+            </block>
+            <text wx:else>暂未获取到水量信息，请稍后尝试</text>
+
+          </view>
+        </view>
+      </view>
+      <image class="sdf-bg" src="/images/bottom-bg.png" style='z-index: 9999;'></image>
+    </view>
+  </block>
 </view>

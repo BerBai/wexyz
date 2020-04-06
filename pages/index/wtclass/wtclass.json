@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "wux-picker-view": "../../../components/wux/picker-view/index",
+    "van-switch": "../../../components/vant/switch/index"
+  },
+  "navigationBarTitleText": "蹭课"
 }

@@ -8,7 +8,7 @@
 <view class='page'>
   <view class="page__bd">
     <view class="timeTop">
-      <text class="timeleft">当前周次：{{idleZcT}}</text>
+      <text class="timeleft">当前周次：{{toweek}}</text>
       <text class="timeright">日期：{{time}}</text>
     </view>
     <wux-cell-group title="标*的为必要项">
@@ -20,13 +20,13 @@
     <button type='default' loading='{{isLoad}}' bind:tap="{{isLoad?'':'onClick'}}">一键查询</button>
 
     <view>
-    <text class='tiptext'>注意：
+      <text class='tiptext'>注意：
     　　1.查找空教室耗时有点长，使用全天查找耗时更是需要1分钟以上。
     　　2.尽可能不要使用全天查找。
     　　3.此功能请不要频繁查询。</text>
-  </view>
+    </view>
 
-    <view hidden="{{!isShow}}">
+    <!-- <view hidden="{{!isShow}}">
       <view class="weui-loadmore">
         <text class="weui-loadmore__tips">查询结果如下</text>
         <text class="weui-loadmore__tips" style='padding-top: 10px;'>{{rooms.msg}}</text>
@@ -51,7 +51,7 @@
         </wux-sticky-item>
 
       </wux-sticky>
-    </view>
+    </view> -->
   </view>
 
   <view class="weui-footer" style='margin-top:25px;'>

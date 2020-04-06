@@ -13,8 +13,7 @@
             <text wx:if="{{jsonContent.teachWeek !=='N/A'}}">{{jsonContent.month}} 月{{jsonContent.day}} 日（第 {{jsonContent.teachWeek}} 周） {{jsonContent.dayOfWeek}}</text>
             <text wx:else>{{jsonContent.month}} 月 {{jsonContent.day}} 日（假期） {{jsonContent.dayOfWeek}}</text>
           </view>
-
-
+          
           <view class="weui-item border-shadow kaixue" wx:if="{{jsonContent.gap2StartClass > 0 && jsonContent.gap2StartClass <= 30}}">
             <view class="weui-flex">
               <view class="weui-flex__item" style='margin-top:20rpx;margin-left:10rpx;color:#C1F9F7;'>

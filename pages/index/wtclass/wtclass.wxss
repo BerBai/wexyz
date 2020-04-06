@@ -1,1 +1,6 @@
 /* pages/index/wtclass/wtclass.wxss */
+@import '/pages/index/freeRoom/freeRoom.wxss';
+@import '/pages/user/login/login.wxss';
+texqt{
+  display: flex;flex-direction: row;
+}

@@ -46,20 +46,6 @@ Page({
       if (terms[i] === term) {
         var k = i
         terms[i] = nscore
-        // indexModel.getCjcx(token.id, token.token, term, (res) => {
-        //   console.log(res)
-        //   scores[k] = res
-        //   _this.setData({
-        //     scores: scores
-        //   })
-        //   if (res.token == -1) {
-        //     wx.showToast({
-        //       title: '请重新登录',
-        //       icon: 'none',
-        //       duration: 2000
-        //     })
-        //   }
-        // })
       }
     }
 

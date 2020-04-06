@@ -24,7 +24,6 @@
     "pages/user/agreement/agreement",
     "pages/user/zan/zan",
     "pages/user/zan/zanlog",
-    "pages/user/information/information",
     "pages/index/department/department",
     "pages/index/changePwd/changePwd",
     "pages/index/pwd/pwd",
@@ -34,7 +33,8 @@
     "pages/index/ncre/ncre",
     "pages/index/webill/webill",
     "pages/index/webill/webind",
-    "pages/index/yicard/yicard"
+    "pages/index/yicard/yicard",
+    "pages/index/wtclass/courseList"
   ],
   "window": {
     "backgroundTextStyle": "light",

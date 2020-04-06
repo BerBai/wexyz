@@ -203,7 +203,7 @@ Page({
         wx.hideToast();
         wx.showToast({
           title: timetable.msg,
-          image: '/images/login/error.png',
+          image: 'cancel',
           duration: 2000
         })
       }

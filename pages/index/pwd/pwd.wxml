@@ -1,7 +1,7 @@
 <view class="bd">
   <form class="login-form">
     <view class="input-group {{userid_focus ? 'active' : ''}}">
-      <text class="input-label">帐号</text>
+      <text class="input-label">学号</text>
       <input type="number" cursor-spacing="30" id="userid" maxlength="10" placeholder="请输入学号" bindinput="useridInput" bindfocus="inputFocus" bindblur="inputBlur" />
     </view>
   </form>

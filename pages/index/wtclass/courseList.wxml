@@ -1,0 +1,57 @@
+<!--pages/index/wtclass/courseList.wxml-->
+<!-- wxml不支持复杂函数，用wxs引入 -->
+<wxs module="fn">
+  module.exports = {
+    split: function(str) {
+      return str.split(',');
+    },
+    random: function() {
+      return Math.random();
+    }
+    parseInt: function(str) {
+      return parseInt(str);
+    }
+  }
+</wxs>
+<view class="container">
+  <view wx:if="{{isLoad}}" class="{{isLoad == '详细'?'':'remind-box'}}">
+    <image wx:if="{{isLoad == '加载中'}}" class="remind-img" src="/images/loading.gif"></image>
+    <block wx:elif="{{isLoad == '详细'}}" class="">
+      <wux-sticky scrollTop="{{ scrollTop }}">
+        <wux-sticky-item wx:for="{{courseInfo}}" wx:key="cid">
+          <view slot="title">{{item.course}}</view>
+          <view slot="content" class="weui-cells weui-cells_after-title text" wx:for="{{item}}" wx:key="id">
+            <view class="weui-cell" wx:if="{{item.class}}">
+              <view class="weui-cell__hd">
+                <image src="/images/index/courselist.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+              </view>
+              <view class="weui-cell__bd">{{item.teacher}}\n\r{{item.class}}</view>
+              <view class="weui-cell__ft">{{item.pos}} {{xq[fn.parseInt(fn.split(item.time)[0])]}} {{jc[fn.parseInt(fn.split(item.time)[1]-1)]}}</view>
+            </view>
+          </view>
+        </wux-sticky-item>
+      </wux-sticky>
+      <view class="round-click" bindtap='back'>
+        <text>返回</text>
+      </view>
+    </block>
+    <block wx:else>
+      <image class="remind-img" src="/images/index/nothing.png"></image>
+      <text class="remind-text">{{isLoad}}</text>
+      <view class="round-click" bindtap='back'>
+        <text>返回</text>
+      </view>
+    </block>
+  </view>
+
+  <block wx:else>
+    <block wx:for="{{courses}}" wx:key="courseid">
+      <van-cell is-link value="" icon="/images/index/courselist.png" bind:click="onCourse" id="{{index}}" data-name="{{item}}">
+        <view slot="title">
+          <view class="van-cell-text">{{item}}</view>
+        </view>
+      </van-cell>
+    </block>
+  </block>
+
+</view>
