@@ -34,7 +34,8 @@
     "pages/index/webill/webill",
     "pages/index/webill/webind",
     "pages/index/yicard/yicard",
-    "pages/index/wtclass/courseList"
+    "pages/index/wtclass/courseList",
+    "pages/index/club/club"
   ],
   "window": {
     "backgroundTextStyle": "light",

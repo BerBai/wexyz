@@ -1,0 +1,6 @@
+<!--pages/index/club/club.wxml-->
+<van-cell-group>
+  <block wx:for="{{club}}" wx:key="club">
+    <van-cell icon="{{item.img}}" is-link title="{{item.name}}" label="{{item.content}}" link-type="navigateTo" url="/pages/index/wx/wx?url={{item.url}}" />
+  </block>
+</van-cell-group>

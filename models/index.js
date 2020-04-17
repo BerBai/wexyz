@@ -130,4 +130,12 @@ export class IndexModel extends HTTP {
       }
     })
   }
+  getClub(page, perpage, state, sCallback) {
+    this.request({
+      url: `App.Club.GetList&page=${page}&perpage=${perpage}&state=${state}`,
+      success: (res) => {
+        sCallback(res)
+      }
+    })
+  }
 }

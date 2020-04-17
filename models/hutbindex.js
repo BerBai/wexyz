@@ -19,7 +19,12 @@ export class HutbIndexModel extends HTTP {
       url: `App.Hutb_Hutb.GetScore&cookie=${token}&xn=${xn}`,
       success: (res) => {
         console.log(res)
-        wx.setStorageSync(xn, res.data)
+        try {
+          if (res.status)
+            wx.setStorageSync(xn, res.data)
+        } catch (e) {
+          console.log('getS() error')
+        }
         sCallback(res)
       }
     })
@@ -47,6 +52,13 @@ export class HutbIndexModel extends HTTP {
       url: `App.Wanmei.GetDf&roomverify=${roomverify}`,
       success: (res) => {
         console.log(res)
+        try {
+          if (res.returnmsg == 'SUCCESS') {
+            wx.setStorageSync('df', res);
+          }
+        } catch (e) {
+          console.log('getDf error')
+        }
         sCallback(res)
       }
     })
@@ -56,6 +68,13 @@ export class HutbIndexModel extends HTTP {
       url: `App.Wanmei.GetSf&roomverify=${roomverify}`,
       success: (res) => {
         console.log(res)
+        try {
+          if (res.returnmsg == 'SUCCESS') {
+            wx.setStorageSync('sf', res);
+          }
+        } catch (e) {
+          console.log('getSf error')
+        }
         sCallback(res)
       }
     })

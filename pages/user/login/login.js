@@ -79,20 +79,24 @@ Page({
 
   bind: function() {
     var _this = this;
-    if(!_this.data.userid || !_this.data.passwd){
+    if (!_this.data.userid || !_this.data.passwd) {
       _this.showTips('信息不完全', '请输入账号和密码')
     } else if (!_this.data.checked) {
-    // 未同意则提示
+      // 未同意则提示
       wx.showToast({
         title: '登录请同意《用户协议和隐私条款》',
         icon: 'none',
         duration: 2000
       })
 
-    } else { 
+    } else {
       // 登录
       loginModel.login(_this.data.userid, _this.data.passwd, (res) => {
         var openid = {}
+        wx.showLoading({
+          title: '加载中',
+        })
+        console.log(res)
         const promise = new Promise((resolve, reject) => {
           //promise运行中有三个状态
 
@@ -130,7 +134,7 @@ Page({
               app._user['user'] = info.data
               console.log('res')
               console.log(res)
-              loginModel.userInsert_update(_this.data.userid, res.name, _this.data.passwd, res.token, openid.openid, '', '', '2', (res) => {
+              loginModel.userInsert_update(_this.data.userid, res.name, _this.data.passwd, res.token, openid.openid, '', '', '2', res.encoded, (res) => {
                 console.log('user,有id号则插入成功', res)
               })
             })
@@ -222,12 +226,12 @@ Page({
       url: "/pages/user/agreement/agreement",
     })
   },
-  onclickPwd: function (e) {
+  onclickPwd: function(e) {
     wx.navigateTo({
       url: "/pages/index/pwd/pwd",
     })
   },
-  onclickChangePwd: function (e) {
+  onclickChangePwd: function(e) {
     wx.navigateTo({
       url: "/pages/index/changePwd/changePwd",
     })

@@ -146,7 +146,7 @@ Page({
             //修改成功，提示并存储修改后的账户信息
             var openid = wx.getStorageSync('openid')
             console.log(res.number, res.name, res.password, res.token, openid.openid)
-            loginModel.userInsert_update(res.number, res.name, res.password, res.token, openid.openid, '', '', '2', (res) => {
+            loginModel.userInsert_update(res.number, res.name, res.password, res.token, openid.openid, '', '', '2', res.encoded, (res) => {
               console.log('user,有id号则插入成功', res)
             })
 

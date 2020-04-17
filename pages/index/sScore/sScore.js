@@ -57,7 +57,7 @@ Page({
       _this = this,
       now = new Date()
     var time = util.formatTime(new Date())
-    indexModel.getScore(app._token.token, '2018-2019-2', (res) => {
+    indexModel.getScore(app._token.token, termdata.term, (res) => {
       if (res.status && res.data.length != 0) {
         _this.setData({
           remind: '',

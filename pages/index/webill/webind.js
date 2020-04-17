@@ -1,4 +1,10 @@
 // pages/index/webill/webind.js
+import {
+  LoginModel
+} from '../../../models/login.js'
+
+let loginModel = new LoginModel()
+//获取应用实例
 const app = getApp();
 Page({
 
@@ -13,8 +19,8 @@ Page({
     room: {
       fj: "",
       gy: '',
-      id:'',
-      lc:''
+      id: '',
+      lc: ''
     },
     xq: [{
       'id': '2',
@@ -1057,7 +1063,6 @@ Page({
       xq: xq
     })
   },
-
   kindToggle2(e) {
     console.log(e)
     const id = e.currentTarget.id,
@@ -1135,6 +1140,17 @@ Page({
     var room = _this.data.room
     if (_this.data.fjid) {
       var msg = _this.data.room['gy'] + '-' + _this.data.room['lc'] + '-' + _this.data.fjid
+      // 存入数据库
+      var id = wx.getStorageSync('token').number || false
+      if (id)
+        loginModel.userGet(id, (res) => {
+          console.log('获取用户数据', res)
+          if (res.id) {
+            loginModel.userInsert_update(id, res.name, res.pwd, res.token, res.openid, _this.data.room['id'], '', res.type, res.encoded, (res2) => {
+
+            })
+          }
+        })
 
       try {
         wx.setStorageSync('room', _this.handle(_this.data.room))

@@ -15,7 +15,7 @@ import {
 let loginModel = new LoginModel()
 
 App({
-  version: 'v1.0.0', //版本号
+  version: 'v1.1.0', //版本号
 
   onLaunch: function() {
     // 展示本地存储能力
@@ -136,7 +136,7 @@ App({
     // 从缓存中获取
     var terms = wx.getStorageSync('terms') || []
     _this._token = wx.getStorageSync('token')
-    var userinfo = _this._user.user.data
+    var userinfo = wx.getStorageSync('stuInfo').data
 
     // 计算全部学期
     if (terms.length == 0 && this._user) {

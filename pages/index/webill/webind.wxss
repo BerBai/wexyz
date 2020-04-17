@@ -114,7 +114,7 @@
 
 .input-label {
   color: #333;
-  padding: 9rpx 20rpx 0 40rpx;
+  padding: 0rpx 20rpx 0 40rpx;
   border-right: 1px solid #d8d8d8;
 }
 .input-text{

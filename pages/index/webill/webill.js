@@ -101,49 +101,53 @@ Page({
   onShow: function() {
     var time = util.formatTime(new Date(), ''),
       room = wx.getStorageSync('room') || false,
+      df = wx.getStorageSync('df') || false,
+      sf = wx.getStorageSync('sf') || false,
       _this = this
-    if (room ) {
-      hutbIndexModel.getDf(room.id, (res) => {
-        try {
-          if (res.returnmsg == 'SUCCESS') {
+    if (room) {
+      if (!df)
+        hutbIndexModel.getDf(room.id, (res) => {
+          try {
+            if (res.returnmsg == 'SUCCESS') {
+              _this.setData({
+                df: res,
+                hasdf: true
+              })
+            } else {
+              _this.setData({
+                df: res,
+                hasdf: false
+              })
+            }
+          } catch (e) {
             _this.setData({
-              df: res,
-              hasdf: true
-            })
-          } else {
-            _this.setData({
-              df: res,
               hasdf: false
             })
           }
-        } catch (e) {
-          _this.setData({
-            hasdf: false
-          })
-        }
 
-      })
-      hutbIndexModel.getSf(room.id, (res) => {
-        try {
-          if (res.returnmsg == 'SUCCESS') {
+        })
+      if (!sf)
+        hutbIndexModel.getSf(room.id, (res) => {
+          try {
+            if (res.returnmsg == 'SUCCESS') {
+              _this.setData({
+                sf: res,
+                hassf: true
+              })
+            } else {
+              _this.setData({
+                sf: res,
+                hassf: false
+              })
+            }
+
+          } catch (e) {
             _this.setData({
-              sf: res,
-              hassf: true
-            })
-          } else {
-            _this.setData({
-              sf: res,
               hassf: false
             })
           }
 
-        } catch (e) {
-          _this.setData({
-            hassf: false
-          })
-        }
-
-      })
+        })
       _this.setData({
         'time': time,
         'room': room,

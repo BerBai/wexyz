@@ -44,7 +44,17 @@
       <text class="desc-content">如果你希望关联“WeXYZ”小程序到你的公众号，请复制上面的AppID到公众号后台发送小程序关联邀请。</text>
     </view>
     <view class="log-list" wx:else>
-    <view class="describe">
+      <view class="describe">
+        <view class="desc-title">
+          <text class="desc-v">v1.1.0</text>
+          <text class="desc-time">2020.2.25</text>
+        </view>
+        <text class="desc-content">增加功能</text>
+        <view class="desc-list">
+          <text class="desc-list-item">四六级、全国计算机等级、蹭课、水电费等</text>
+        </view>
+      </view>
+      <view class="describe">
         <view class="desc-title">
           <text class="desc-v">v1.0.0</text>
           <text class="desc-time">2019.12.25</text>
@@ -55,7 +65,7 @@
           <text class="desc-list-item">增加后台功能控制模块</text>
         </view>
       </view>
-      <view class="describe">
+      <!-- <view class="describe">
         <view class="desc-title">
           <text class="desc-v">v0.3.0 公测</text>
           <text class="desc-time">2019.06.07</text>
@@ -102,7 +112,7 @@
           <text class="desc-v">dev0.1.0 内测体验版</text>
           <text class="desc-time">2019.05.16</text>
         </view>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class="footer">

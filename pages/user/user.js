@@ -82,7 +82,7 @@ Page({
           console.log(res)
 
           //测试输出userInfo
-          console.log("userInfo" + userInfo)
+          // console.log("userInfo" + userInfo)
 
         },
         fail: function(err) {

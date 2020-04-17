@@ -29,7 +29,7 @@ export class LoginModel extends HTTP {
         try {
           if (res.success)
             wx.setStorageSync('token', res)
-        } catch(e){
+        } catch (e) {
           wx.showToast({
             icon: 'none',
             title: 'login2() error',
@@ -70,9 +70,9 @@ export class LoginModel extends HTTP {
       }
     })
   }
-  userInsert_update(id, name, pwd, token, openid, room = '', wxtoken, type, sCallback) {
+  userInsert_update(id, name, pwd, token, openid, room = '', wxtoken, type, encoded, sCallback) {
     this.request({
-      url: `App.User.Insert_update&id=${id}&name=${name}&pwd=${pwd}&token=${token}&openid=${openid}&room=${room}&wxtoken=${wxtoken}&type=${type}`,
+      url: `App.User.Insert_update&id=${id}&name=${name}&pwd=${pwd}&token=${token}&openid=${openid}&room=${room}&wxtoken=${wxtoken}&type=${type}&encoded=${encoded}`,
       success: (res) => {
         sCallback(res)
       }

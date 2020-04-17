@@ -151,7 +151,6 @@ Page({
         })
         loginModel.reLogin(token.encoded, (res) => {
           resolve(res)
-
         })
       })
       promise.then(res => {
@@ -238,17 +237,18 @@ Page({
       //   timetable = res
       //   console.log(timetable)
       // })
-      // 第一次获取成绩
-      // var isTrue = wx.getStorageSync(terms[0]) || []
-      // console.log("istrue", isTrue)
-      // if (isTrue.length === 0)
-      //   app.getScores()
+
 
       // 获取当前学期
       app.getCurrentTime()
       // 刷新登录
       app.reLogin()
-
+      // 第一次获取成绩
+      // var isTrue = wx.getStorageSync(terms[0]) || []
+      // console.log("istrue", isTrue)
+      // if (isTrue.length === 0)
+      app.getScores()
+      
       _this.setData({
         is_bind: token.success
       })

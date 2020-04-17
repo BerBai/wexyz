@@ -167,7 +167,7 @@ Page({
 
       //课表状态判断处理
       if (token && !timetable) {
-        loginModel.getTimetable(token.token, '2017-2018-1', '', (timetable) => { //termdata.term, '', (timetable) => {
+        loginModel.getTimetable(token.token, termdata.term, '', (timetable) => { //'2017-2018-1', '', (timetable) => { //
           _this.timetable = timetable
           console.log('1.获取的课表', timetable)
           resolve(timetable)

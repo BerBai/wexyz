@@ -22,6 +22,7 @@ Page({
     id: '',
     idCookie: '',
     result: '',
+    verimg: '',
     dq: {
       "sn": "2019年下半年全国大学英语四、六级考试（含口试）",
       "subn": "仅限查询2019年下半年考试成绩。",
@@ -73,11 +74,11 @@ Page({
     var _this = this;
     if (!_this.data.curselected) {
       indexModel.getCetIdV('', (res) => {
-        if (res.ret == 200)
-          _this.setData({
-            verimg: res.content,
-            idCookie: res.cookie
-          })
+        // if (res.ret == 200)
+        _this.setData({
+          verimg: res.content,
+          idCookie: res.cookie
+        })
       })
     }
   },
@@ -89,7 +90,7 @@ Page({
     if (!curselected) { // 查询准考证
       console.log(formData)
       if (formData.name && formData.idCard && formData.verimgT) {
-        indexModel.getCetId(_this.data.idCookie, formData.name, formData.idCard, formData.verimgT , (res) => {
+        indexModel.getCetId(_this.data.idCookie, formData.name, formData.idCard, formData.verimgT, (res) => {
           console.log(res)
           if (res.ExceuteResultType == 1) {
             var result = res.Message

@@ -5,19 +5,9 @@ import {
 const app = getApp();
 
 export class LoginModel extends HTTP {
-  login(xh, password, sCallback) {
+  userInsert_update(id, name, pwd, token, openid, room = '', wxtoken, type, encoded, sCallback) {
     this.request({
-      url: `App.QZAPI.Login&xh=${xh}&password=${password}`,
-      success: (res) => {
-        wx.setStorageSync('token', res)
-        sCallback(res)
-      }
-    })
-  }
-  
-  userInsert_update(id, name, pwd, token, openid, room='', wxtoken, type, sCallback) {
-    this.request({
-      url: `App.User.Insert_update&id=${id}&name=${name}&pwd=${pwd}&token=${token}&openid=${openid}&room=${room}&wxtoken=${wxtoken}&type=${type}`,
+      url: `App.User.Insert_update&id=${id}&name=${name}&pwd=${pwd}&token=${token}&openid=${openid}&room=${room}&wxtoken=${wxtoken}&type=${type}&encoded=${encoded}`,
       success: (res) => {
         sCallback(res)
       }
@@ -33,28 +23,11 @@ export class LoginModel extends HTTP {
       }
     })
   }
-  getUserInfo(xh, token, sCallback) {
-    this.request({
-      url: `App.QZAPI.GetUserInfo&xh=${xh}&token=${token}`,
-      success: (res) => {
-        wx.setStorageSync('stuInfo', res)
-        sCallback(res)
-      }
-    })
-  }
-  getCurrentTime2(token, sCallback) {
-    this.request({
-      url: `App.QZAPI.GetCurrentTime&token=${token}`,
-      success: (res) => {
-        wx.setStorageSync('termdata', res)
-        sCallback(res)
-      }
-    })
-  }
+
   userGet(id, sCallback) {
     this.request({
-      url:`App.User.Get&id=${id}`,
-      success:(res) => {
+      url: `App.User.Get&id=${id}`,
+      success: (res) => {
         sCallback(res)
       }
     })
